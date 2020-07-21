@@ -1,0 +1,22 @@
+backend:
+  name: github
+  repo: toshikunphoto/myphotoblog # GitHubのリポジトリ#「https://github.com/」の後ろの部分
+  branch: master
+
+media_folder: "static/img"
+public_folder: "/public"
+site_url: http://toshikunblog.net/
+
+collections:
+  - label: "Toshikun Dlifes" # 管理画面のサイドバーで使う
+    extension: "md"
+    name: "post" # 管理画面のパスで使う　例：/admin/collections/blog
+    folder: "content/post" # Markdownを保存するディレクトリ。Hugoのsectionにあたる
+    create: true # 新しいページを作ることを許可する
+    slug: "{{year}}{{month}}{{day}}" # Markdownのファイル名　例：YYYY-MM-DD-title.md
+    fields: # ページ作成画面で使う。Front Matterの値を書く
+      - {label: "タイトル", name: "title", widget: "string"}
+      - {label: "公開日", name: "date", widget: "datetime"}
+      - {label: "サムネイル画像", name: "thumbnail", widget: "string"}
+      - {label: "レーティング", name: "rating", widget: "number"}
+      - {label: "本文", name: "body", widget: "markdown"}

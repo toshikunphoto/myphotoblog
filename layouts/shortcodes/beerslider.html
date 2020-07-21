@@ -1,0 +1,13 @@
+<!-- beer-slider -->
+<link rel="stylesheet" href="/css/BeerSlider.css">
+<div id="{{ .Get "id" }}" class="beer-slider" data-beer-label="after">
+    <img src="{{ .Get "rightsrc" }}" alt="Original">
+    <div class="beer-reveal" data-beer-label="before">
+      <img src="{{ .Get "leftsrc" }}" alt="Processed">
+    </div>
+  </div>
+<script src="/js/BeerSlider.js"></script>
+  <script>
+    var slider = new BeerSlider( document.getElementById( "{{ .Get "id" }}" ) );
+  </script>
+<!-- beer-slider -->

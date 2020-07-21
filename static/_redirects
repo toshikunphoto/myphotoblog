@@ -1,0 +1,3 @@
+http://toshikunblog.netlify.app/*  http://toshikunblog.net/:splat  301!
+https://toshikunblog.netlify.app/*  http://toshikunblog.net/:splat  301!
+http://toshikunblog.net/*  https://toshikunblog.net/:splat  301!
