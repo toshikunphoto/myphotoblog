@@ -30,9 +30,6 @@ useFaviconGenerator = true
     style = "monokai"
     tabWidth = 4
 
-
-pygmentsUseClasses = true
-pygmentsCodeFences = true
   
 [params]
   images = ["https://toshikunblog.net/img/images.png"]
