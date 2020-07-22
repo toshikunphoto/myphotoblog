@@ -10,7 +10,21 @@
                       {{ $toc_and_h2 := printf "%s\n%s" (partial "toc.html" . ) (.Scratch.Get "first_h2")}}
                       {{ replace .Content (.Scratch.Get "first_h2") $toc_and_h2 | safeHTML }}
                     {{ else }}
-                      {{ .Content }}
+                    {{ $p_tag := findRE "<p>(.|\n)+?</p>" .Content }}
+                    {{ $position := div (len $p_tag) 2 }}
+                    {{ $contents := split .Content "\n" }}
+                    {{ $.Scratch.Set "Content" "" }}
+                    {{ $.Scratch.Set "Counter" 0 }}
+                    {{ range $contents }}
+                        {{ if hasPrefix . "<p>" }}
+                            {{ $.Scratch.Add "Counter" 1 }}
+                            {{ if eq ($.Scratch.Get "Counter") $position }}
+                                {{ $.Scratch.Add "Content" (partial "ad_mid.html") }}
+                            {{ end }}
+                        {{ end }}
+                        {{ $.Scratch.Add "Content" (print . "\n") }}
+                    {{ end }}
+                    {{ $.Scratch.Get "Content" | safeHTML }}
                     {{ end }}
             </div>
         </div>
