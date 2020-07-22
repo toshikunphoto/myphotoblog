@@ -1,3 +1,36 @@
-baseURL = "http://example.org/"
-languageCode = "en-us"
-title = "My New Hugo Site"
+baseurl = "https://toshikunblog.net/"
+title = "Toshikun Dlife"
+author = "@Toshikun"
+copyright = "Copyright © 2020, @Toshikun"
+canonifyurls = true
+googleAnalytics = "UA-165344098-1"
+paginate = 4
+hasCJKLanguage = true
+summaryLength = 40
+theme = "hugo-blog-jeffprod"
+useFaviconGenerator = true
+
+[taxonomies]
+    tag = "tags"
+    category = "categories"
+    archive = "archives"
+
+[markup.goldmark.renderer]
+  unsafe = true
+
+[markup]
+  [markup.highlight]
+    codeFences = true
+    guessSyntax = false
+    hl_Lines = ""
+    lineNoStart = 1
+    lineNos = false
+    lineNumbersInTable = true
+    noClasses = true
+    style = "monokai"
+    tabWidth = 4
+    
+  
+[params]
+  images = ["https://toshikunblog.net/img/images.png"]
+  title = "Toshikun Dlife"
