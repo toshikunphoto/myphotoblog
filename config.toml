@@ -19,16 +19,16 @@ useFaviconGenerator = true
   unsafe = true
 
 [markup]
-  [markup.highlight]
-    codeFences = true
-    guessSyntax = false
-    hl_Lines = ""
-    lineNoStart = 1
-    lineNos = false
-    lineNumbersInTable = true
-    noClasses = true
-    style = "monokai"
-    tabWidth = 4
+    [markup.highlight]
+        codeFences = true
+        guessSyntax = true
+        hl_Lines = ""
+        lineNoStart = 1
+        lineNos = false
+        lineNumbersInTable = false
+        noClasses = true
+        style = "monokai"
+        tabWidth = 4
 
   
 [params]
