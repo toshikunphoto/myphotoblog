@@ -18,17 +18,8 @@ useFaviconGenerator = true
 [markup.goldmark.renderer]
   unsafe = true
 
-[markup]
-    [markup.highlight]
-        codeFences = true
-        guessSyntax = true
-        hl_Lines = ""
-        lineNoStart = 1
-        lineNos = false
-        lineNumbersInTable = false
-        noClasses = true
-        style = "monokai"
-        tabWidth = 4
+pygmentsUseClasses = true
+pygmentsCodefences = true
 
   
 [params]
