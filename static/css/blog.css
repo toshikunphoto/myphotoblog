@@ -11,6 +11,6 @@ html,body {
 .mysocial:hover { color: hsl(0, 0%, 71%) }
 
 code {
-     font-family:  'Source Code Pro', monospace;
+     font-family:  'Source Code Pro';
  }
-/* .chroma {font-family:  'Source Code Pro', monospace; } */
+/* .chroma {font-family:  'Source Code Pro'; } */
