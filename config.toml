@@ -23,5 +23,5 @@ pygmentsCodefences = true
 
   
 [params]
-  images = ["https://toshikunblog.net/img/images.png"]
+  images = ["https://toshikunblog.net/img/images.jpg"]
   title = "Toshikun Dlife"
