@@ -23,6 +23,6 @@ pygmentsCodefences = true
 
   
 [params]
-  twitterID = "@toshikun_photo
+  twitterID = "@toshikun_photo"
   images = ["https://toshikunblog.net/img/images.jpg"]
   title = "Toshikun Dlife"
