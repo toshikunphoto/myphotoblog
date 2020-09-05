@@ -42,8 +42,8 @@
 <meta name="msapplication-TileImage" content="/ms-icon-144x144.png">
 <meta name="theme-color" content="#ffffff">
 <!-- ogp relation -->
-{{ template "_internal/opengraph.html" . }}
-{{ template "_internal/twitter_cards.html" . }}
+<meta property="og:title" content="{{ .Title }}" />
+<meta property="og:description" content="{{ .Summary }}" />
 </head>
 <body>
     <meta name="google-site-verification" content="KeyqW3agkc-qs5Cu98SomK9YFLKxvCpChF9yBPIXEWo" />
