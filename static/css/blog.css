@@ -1,6 +1,7 @@
 html,body {
-    font-family: "メイリオ", Meiryo, "游ゴシック", "Yu Gothic", YuGothic, "Hiragino Kaku Gothic ProN", "Hiragino Kaku Gothic Pro";
+    font-family: "游ゴシック", "Yu Gothic", YuGothic, "メイリオ", Meiryo, "Hiragino Kaku Gothic ProN", "Hiragino Kaku Gothic Pro";
     background: #F0F2F4;
+    font-size: 16px;
     }
 .hero-body {
     background-position: center;
