@@ -1,8 +1,6 @@
-@charset "utf-8";
-
 /* カード全体像 */
 .blogcard {
-  max-width: 100%;
+  max-width: 80%;
   margin-bottom: 30px;
   padding: 10px;
   border-radius: 2px;
