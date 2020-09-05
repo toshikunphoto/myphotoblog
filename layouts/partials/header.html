@@ -43,8 +43,7 @@
 <meta name="theme-color" content="#ffffff">
 <!-- ogp relation -->
 {{ template "_internal/opengraph.html" . }}
-<meta name="twitter:card" content="{{ .Summary }}"/>
-<meta name="twitter:site" content="{{$.Site.Params.twitterID}}"/>
+{{ template "_internal/twitter_cards.html" . }}
 </head>
 <body>
     <meta name="google-site-verification" content="KeyqW3agkc-qs5Cu98SomK9YFLKxvCpChF9yBPIXEWo" />
