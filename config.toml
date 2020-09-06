@@ -9,6 +9,7 @@ hasCJKLanguage = true
 summaryLength = 40
 theme = "hugo-blog-jeffprod"
 useFaviconGenerator = true
+disqusShortname = "https-toshikunblog-net"
 
 [taxonomies]
     tag = "tags"
