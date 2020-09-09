@@ -1,6 +1,22 @@
-<section class="toc">
-  <div style="padding: 20px; border: solid 0.1px rgb(0, 0, 0); background-color: rgb(248, 248, 248);">
-  <h4>Contents</h4>
-  {{ .TableOfContents }}
-</div>
-</section>
+<link rel="stylesheet" href="/css/toc.css">
+{{- /* tocパラメータを確認 */ -}}
+{{- if (.Param "toc" | default true) -}}
+    {{- /* ここはさっきと同じ */ -}}
+    {{- if (.Param "tocMove" | default true) -}}
+        {{- $header := (findRE "<h2.*?>(?:.|\n)*?</h2>" .Content) -}}
+        {{- $firstH := index $header 0 -}}
+
+        {{- if ne $firstH nil -}}
+            {{- $newH := printf `%s%s` .TableOfContents $firstH -}}
+            {{- replace .Content $firstH $newH | safeHTML -}}
+        {{- else -}}
+            {{- .Content -}}
+        {{- end -}}
+    {{- else -}}
+        {{- .TableOfContents -}}
+        {{- .Content -}}
+    {{- end -}}
+{{- else -}}
+    {{- /* ToC使わないとき */ -}}
+    {{- .Content -}}
+{{- end -}}
