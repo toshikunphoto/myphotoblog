@@ -12,16 +12,12 @@ useFaviconGenerator = true
 disqusShortname = "https-toshikunblog-net"
 
 [taxonomies]
-  tag = "tags"
-  category = "categories"
-  archive = "archives"
+    tag = "tags"
+    category = "categories"
+    archive = "archives"
 
 [markup.goldmark.renderer]
   unsafe = true
-
-[markup.tableOfContents]
-  ordered = true
-  startLevel = 2
 
 pygmentsUseClasses = true
 pygmentsCodefences = true
