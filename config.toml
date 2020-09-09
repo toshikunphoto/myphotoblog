@@ -19,7 +19,7 @@ disqusShortname = "https-toshikunblog-net"
 [markup]
     [markup.tableOfContents]
         startLevel = 2
-        endLevel = 7
+        endLevel = 3
         ordered = true
 
 [markup.goldmark.renderer]
