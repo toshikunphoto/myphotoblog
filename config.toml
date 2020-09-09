@@ -22,8 +22,6 @@ disqusShortname = "https-toshikunblog-net"
         endLevel = 5
         ordered = true
 
-
-
 [markup.goldmark.renderer]
   unsafe = true
 
