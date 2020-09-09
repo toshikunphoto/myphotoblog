@@ -1,7 +1,4 @@
-
-
 #TableOfContents > ul {
-  list-style-type: disc; 
   font-size: smaller;
   border-radius: 0.5em;
   border: solid 1px lightgray;
@@ -9,7 +6,7 @@
   line-height: 2;
 }
 #TableOfContents > ul:before {
-  content: "目次";
+  content: "Contens";
   font-weight: bolder;
 }
 #TableOfContents ul {
@@ -26,4 +23,11 @@
   font-weight: normal;
   display: block;
   border-bottom: dashed 1px lightgray;
+}  
+#TableOfContents ul { 
+  list-style-type: none; 
+}
+
+#TableOfContents ul ul { 
+  list-style-type: disc; 
 }
