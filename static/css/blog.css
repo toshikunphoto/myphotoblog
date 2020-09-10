@@ -24,6 +24,7 @@ code {
   }
   #TableOfContents > ul:before {
     font-weight: bolder;
+    display: block;
   }
   #TableOfContents ul {
     list-style-type: none;
