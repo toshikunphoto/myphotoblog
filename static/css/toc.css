@@ -1,11 +1,18 @@
-#TableOfContents > ul {
-  font-size: smaller;
-  border-radius: 0.5em;
-  border: solid 1px lightgray;
-  padding: 0.5em 1em;
+#TableOfContents > ol {
+  list-style-type: none;
+  font-size: ;
+  border-radius: 0.1em;
+  border: solid 0.1px rgb(0, 0, 0);
+  padding: 25px;
+  background-color: rgb(248, 248, 248);
   line-height: 2;
 }
-#TableOfContents > ul:before {
-  content: "Contens";
-  font-weight: bolder;
+
+
+#TableOfContents ol ol { 
+  list-style-type: none;
+}
+#TableOfContents a {
+  font-weight: normal;
+  display: block;
 }
