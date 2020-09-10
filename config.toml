@@ -16,6 +16,9 @@ disqusShortname = "https-toshikunblog-net"
     category = "categories"
     archive = "archives"
 
+[markup]
+    [markup.tableOfContents]
+        ordered = true
 
 [markup.goldmark.renderer]
   unsafe = true
