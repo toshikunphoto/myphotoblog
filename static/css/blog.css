@@ -14,7 +14,7 @@ html,body {
 code {
      font-family:  'Source Code Pro';
  }
- 
+
  #TableOfContents > ul {
     font-size: smaller;
     border-radius: 0.5em;
@@ -39,5 +39,4 @@ code {
   #TableOfContents a {
     font-weight: normal;
     display: block;
-    border-bottom: dashed 1px lightgray;
   }
