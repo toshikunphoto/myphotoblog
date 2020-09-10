@@ -2,14 +2,11 @@
 {{- /* tocパラメータを確認 */ -}}
 {{- if (.Param "toc" | default true) -}}
     {{- /* ここはさっきと同じ */ -}}
-        {{- $header := (findRE "<h[1-6].*?>(?:.|\n)*?</h[1-6]>" .Content) -}}
+        {{- $header := (findRE "<h2.*?>(?:.|\n)*?</h2>" .Content) -}}
         {{- $firstH := index $header 0 -}}
         {{- if ne $firstH nil -}}
             {{- $newH := printf `%s%s` .TableOfContents $firstH -}}
             {{- replace .Content $firstH $newH | safeHTML -}}
-            <section class="toc">
-                <h2>目次</h2>
-            </section>    
         {{- else -}}
             {{- .Content -}}
         {{- end -}}
