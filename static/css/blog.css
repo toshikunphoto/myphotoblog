@@ -14,29 +14,3 @@ html,body {
 code {
      font-family:  'Source Code Pro';
  }
-
- #TableOfContents > ul {
-    font-size: smaller;
-    border-radius: 0.5em;
-    margin:0;
-    line-height: 2;
-  }
-  #TableOfContents > ul:before {
-    content: "目次";
-    font-weight: bolder;
-  }
-  #TableOfContents ul {
-    list-style-type: none;
-  }
-  #TableOfContents li {
-    padding-top: 0;
-  }
-  #TableOfContents li > ul {
-    padding-left: 1em;
-    width: 100%;
-  }
-  #TableOfContents a {
-    font-weight: normal;
-    display: block;
-    border-bottom: dashed 1px lightgray;
-  }
