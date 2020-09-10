@@ -1,25 +1,7 @@
-#TableOfContents > ol {
-  font-size: medium;
-  border-radius: 0.5em;
-  border: solid 1px lightgray;
-  padding: 0.5em 1em;
-  line-height: 2;
+#TableOfContents ul { 
+  list-style-type: none; 
 }
-#TableOfContents > ul:before {
-  content: "目次";
-  font-weight: bolder;
-}
-#TableOfContents ol {
-  list-style-type: none;
-}
-#TableOfContents ol {
-  padding-top: 0;
-}
-#TableOfContents ol > ul {
-  padding-left: 1em;
-  width: 100%;
-}
-#TableOfContents a {
-  font-weight: normal;
-  display: block;
+
+#TableOfContents ul ul { 
+  list-style-type: disc; 
 }

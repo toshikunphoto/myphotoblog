@@ -18,6 +18,7 @@ disqusShortname = "https-toshikunblog-net"
 
 [markup]
     [markup.tableOfContents]
+
         ordered = true
 
 [markup.goldmark.renderer]
