@@ -22,9 +22,7 @@ code {
     padding: 0.5em 1em;
     line-height: 2;
   }
-  #TableOfContents > ul:before {
-    content: "目次";
-    font-weight: bolder;
+
   }
   #TableOfContents ul {
     list-style-type: none;
