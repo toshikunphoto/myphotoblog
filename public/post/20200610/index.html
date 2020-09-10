@@ -1,0 +1,351 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <title>Toshikun Dlife  | hugoで目次(toc)を導入する</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link href="https://fonts.googleapis.com/css?family=Source+Code+Pro" rel="stylesheet">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bulma/0.7.1/css/bulma.min.css" />
+    <link rel="stylesheet" href="https://toshikunblog.net/css/blog.css" />
+    <link rel="stylesheet" href="https://toshikunblog.net/css/syntax.css" />
+    
+
+<script async src="https://www.googletagmanager.com/gtag/js?id=UA-165344098-1"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+  gtag('config', 'UA-165344098-1');
+</script>
+<script data-ad-client="ca-pub-4385015283597896" async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
+
+<link rel="apple-touch-icon" sizes="57x57" href="https://toshikunblog.net/img/favicon/apple-icon-57x57.png">
+<link rel="apple-touch-icon" sizes="60x60" href="https://toshikunblog.net/img/favicon/apple-icon-60x60.png">
+<link rel="apple-touch-icon" sizes="72x72" href="https://toshikunblog.net/img/favicon/apple-icon-72x72.png">
+<link rel="apple-touch-icon" sizes="76x76" href="https://toshikunblog.net/img/favicon/apple-icon-76x76.png">
+<link rel="apple-touch-icon" sizes="114x114" href="https://toshikunblog.net/img/favicon/apple-icon-114x114.png">
+<link rel="apple-touch-icon" sizes="120x120" href="https://toshikunblog.net/img/favicon/apple-icon-120x120.png">
+<link rel="apple-touch-icon" sizes="144x144" href="https://toshikunblog.net/img/favicon/apple-icon-144x144.png">
+<link rel="apple-touch-icon" sizes="152x152" href="https://toshikunblog.net/img/favicon/apple-icon-152x152.png">
+<link rel="apple-touch-icon" sizes="180x180" href="https://toshikunblog.net/img/favicon/apple-icon-180x180.png">
+<link rel="icon" type="image/png" sizes="192x192"  href="https://toshikunblog.net/img/favicon/android-icon-192x192.png">
+<link rel="icon" type="image/png" sizes="32x32" href="https://toshikunblog.net/img/favicon/favicon-32x32.png">
+<link rel="icon" type="image/png" sizes="96x96" href="https://toshikunblog.net/img/favicon/favicon-96x96.png">
+<link rel="icon" type="image/png" sizes="16x16" href="https://toshikunblog.net/img/favicon/favicon-16x16.png">
+<link rel="manifest" href="https://toshikunblog.net/img/favicon/faviconmanifest.json">
+<meta name="msapplication-TileColor" content="#ffffff">
+<meta name="msapplication-TileImage" content="/ms-icon-144x144.png">
+<meta name="theme-color" content="#ffffff">
+
+<meta property="og:title" content="hugoで目次(toc)を導入する" />
+<meta property="og:description" content="目次のすすめ こんにちは、toshikunです。みなさま、いかがお過ごしでしょうか" />
+<meta property="og:type" content="article" />
+<meta property="og:url" content="https://toshikunblog.net/post/20200610/" />
+<meta property="og:image" content="https://toshikunblog.net/img/images.jpg"/>
+<meta property="article:published_time" content="2020-06-10T15:16:26+09:00" />
+<meta property="article:modified_time" content="2020-06-10T15:16:26+09:00" /><meta property="og:site_name" content="Toshikun Dlife" />
+
+<meta property="og:locale" content="ja_JP" />
+<meta property="twitter:card" content="summary"/>
+<meta property="twitter:image" content="https://toshikunblog.net/img/images.jpg"/>
+<meta property="twitter:title" content="Toshikun Dlife"/>
+<meta property="twitter:description" content=""/>
+</head>
+<body>
+    <meta name="google-site-verification" content="KeyqW3agkc-qs5Cu98SomK9YFLKxvCpChF9yBPIXEWo" />
+    
+    <nav class="navbar is-fixed-top" role="navigation" aria-label="main navigation">
+        <div class="navbar-brand">
+            <a class="navbar-item" href="https://toshikunblog.net/">Home</a>
+            <a class="navbar-item" href="https://toshikunblog.net/page/about">About me</a>
+        </div>
+    </nav>
+    
+
+    
+    <section class="hero is-info is-medium">
+        <div class="hero-body" style="background-image: url(https://toshikunblog.net/img/header-1.jpg);">
+            <div class="container has-text-centered">
+                <br>
+                <h1 class="title is-size-1">
+                    
+                        hugoで目次(toc)を導入する
+                    
+                </h1>
+                
+            </div>
+        </div>
+    </section>
+
+
+<div class="container">
+    <div class="section">
+    
+
+<div class="columns">
+    <div class="column is-9">
+        <div class="tile is-child box">
+            <div class="content">
+                
+                    
+                    
+                      
+                      <h1 id="目次のすすめ">目次のすすめ</h1>
+<p>こんにちは、toshikunです。みなさま、いかがお過ごしでしょうか。</p>
+<p>かねてから実装しようと思っていた目次(俗にいうtable of contents)を重い腰を上げて今回このブログにも導入しました。
+最近本業が忙しくてまったくブログ触れないな～とか思っていたのでちょうど良かった。</p>
+<p>では実際に見ていきます。</p>
+<section class="toc">
+  <div style="padding: 20px; border: solid 0.1px rgb(0, 0, 0); background-color: rgb(248, 248, 248);">
+  <h4>Contents</h4>
+  <nav id="TableOfContents">
+  <ol>
+    <li><a href="#1-tochtmlの作成">1. toc.htmlの作成</a></li>
+    <li><a href="#2-singlehtmlの編集">2. single.htmlの編集</a></li>
+    <li><a href="#3-markdownファイルに書き込む設定">3. markdownファイルに書き込む設定</a></li>
+    <li><a href="#4-デザインを変えてみる">4. デザインを変えてみる</a></li>
+    <li><a href="#5-まとめ">5. まとめ</a></li>
+  </ol>
+</nav>
+</div>
+</section>
+<h2 id="1-tochtmlの作成">1. toc.htmlの作成</h2>
+<p>layouts/partialsにこのようなhtmlファイルを作成します。</p>
+<pre><code>&lt;section class=&quot;toc&quot;&gt;
+  &lt;h4&gt;目次&lt;/h4&gt;
+  {{ .TableOfContents }}
+&lt;/section&gt;
+</code></pre><p>参考にさせて頂いたサイトさんでは2行目が<code>&lt;h4&gt;目次&lt;/h4&gt;</code>となっていましたが当ブログでは以下のように書き換えてます。</p>
+<pre><code>&lt;section class=&quot;toc&quot;&gt;
+  &lt;h2&gt;Contents&lt;/h2&gt;
+  {{ .TableOfContents }}
+&lt;/section&gt;
+</code></pre><p><code>&lt;h4&gt;目次&lt;/h4&gt;</code>を<code>&lt;h2&gt;Contents&lt;/h2&gt;</code>としました。</p>
+<p>h4をh2に変えることによって文字の大きさを変えています。</p>
+<p>『目次』という文言も『Contents』に変更してあります。</p>
+<h2 id="2-singlehtmlの編集">2. single.htmlの編集</h2>
+<p>続いてlayouts/_defaultに<code>single.html</code>というファイルがあります。</p>
+<p>こちらにも下記のような修正が必要になってきます。
+<code>{{ .Content }}</code>となっているところがあると思うのでそれを以下のように書き換えてあげます。
+<br><br></p>
+<pre><code>{{ $first_h2 := index (findRE &quot;&lt;h2 id.*?&gt;&quot; .Content 1) 0 }}
+{{ .Scratch.Set &quot;first_h2&quot; $first_h2}}
+{{ if and (.Params.toc) (.Scratch.Get &quot;first_h2&quot;) }}
+  {{ $toc_and_h2 := printf &quot;%s\n%s&quot; (partial &quot;toc.html&quot; . ) (.Scratch.Get &quot;first_h2&quot;)}}
+  {{ replace .Content (.Scratch.Get &quot;first_h2&quot;) $toc_and_h2 | safeHTML }}
+{{ else }}
+  {{ .Content }}
+{{ end }}
+</code></pre><br>
+この中身の説明については参考にさせてもらったサイトを見て頂いたほうががわかりやすいと思いますのでここでは割愛させて頂きます。
+<p>ちなにみ参考サイトは下記のサイトです。ご覧になって頂ければと思います。</p>
+<p><a href="https://tech-babysteps.net/hugo-insert-table-of-contents/">Baby Steps</a>
+<br></p>
+<h2 id="3-markdownファイルに書き込む設定">3. markdownファイルに書き込む設定</h2>
+<p>これはおなじみかもしれない機能。
+目次を表記するかはmarkdownファイルで設定することができます。</p>
+<pre><code>---
+title: &quot;タイトル&quot;
+date: yyyy-mm-ssT00:00:00+09:00
+archives: &quot;2020/01&quot;
+tags: [&quot;hugo&quot;]
+toc: true
+featured_image: &quot;&quot;
+---
+</code></pre><p>これを<code>Front-matter</code>というんですが<code>toc: true</code>を設定してあげることで目次を表記できるというわけですね。</p>
+<p>ちなみに『この記事は分量が少ないから目次を表示させたくない』という場合は<code>toc: false</code>にしてあげると表示されなくなります。</p>
+<h2 id="4-デザインを変えてみる">4. デザインを変えてみる</h2>
+<p>このままでも使えますが味気ない目次になってしまいます。
+<img src="https://lh3.googleusercontent.com/Mpm_mo6BQmRwSWE02dmKz3Xer7Y_mWbMIBbLOlh5LP_NuKyk5DAcjt9SL15FFqFgnvhLDs0CSclCfoU69qrFinGpH3q2WSx2x_WnsewU74gKhLjAl-uG60j6js20USxG4gomaTdFBw=w1000" >
+<br>
+<br>
+私自身のイメージとしては枠で囲ったりして目次内の背景色も変更したいなと思っていましたのでそれも行っていきます。
+<br><br></p>
+<p>ということで<code>toc.html</code>をまたまた修正していきます。</p>
+<p>とはいえ当方はhtmlやcssは全然勉強してませんので「もっとこうしたほうがいいよ」とかあったら教えて欲しいです。
+<br><br>
+では実際に見ていきます。</p>
+<pre><code>&lt;section class=&quot;toc&quot;&gt;
+  &lt;div style=&quot;padding: 20px; border: solid 0.1px rgb(0, 0, 0); background-color: rgb(248, 248, 248);&quot;&gt;
+  &lt;h4&gt;Contents&lt;/h4&gt;
+  {{ .TableOfContents }}
+&lt;/div&gt;
+&lt;/section&gt;
+</code></pre><br>
+修正したのは2行目と5行目
+<p>キモが2行目になりますので一応ここポイントです。まあ調べれば出てくるんですけどね。
+<br><br></p>
+<p><strong>padding</strong>で枠内の余白を定義しています。その後に続く<code>20px;</code>でその余白の度合い調整できます。</p>
+<p><strong>border</strong>で枠の設定を、その後に続く<code>: solid 0.1px</code>で枠の太さ、さらに<code> rgb(0, 0, 0);20px;</code>で枠の色を決めることができます。</p>
+<p><strong>background-color</strong>では文字通り枠内の背景の色を指定でき<code>: rgb(248, 248, 248);</code>という風に設定を行います。</p>
+<p>ちなみに<code>: rgb(248, 248, 248);</code>はカラーコード(#f8f8f8のような形式で色を指定する方法)でも反映させることができますので有効活用していただければと思います。</p>
+<h2 id="5-まとめ">5. まとめ</h2>
+<p>今回は目次を作成してみました。やっとこのブログのいろんなところが整ってきました。ただエンジニアとはいっても普段はネットワークインフラメインでやっているので「これはナンセンスじゃね？？？？？」っていうのがあればDM等で教えていただけますと幸いです。</p>
+<p>今度はネットワークとかのことも書こうかと思います。</p>
+<p>ではまた。(@^^)/~~~</p>
+
+                    
+                <div id="disqus_thread"></div>
+<script type="application/javascript">
+    var disqus_config = function () {
+    
+    
+    
+    };
+    (function() {
+        if (["localhost", "127.0.0.1"].indexOf(window.location.hostname) != -1) {
+            document.getElementById('disqus_thread').innerHTML = 'Disqus comments not available by default when the website is previewed locally.';
+            return;
+        }
+        var d = document, s = d.createElement('script'); s.async = true;
+        s.src = '//' + "https-toshikunblog-net" + '.disqus.com/embed.js';
+        s.setAttribute('data-timestamp', +new Date());
+        (d.head || d.body).appendChild(s);
+    })();
+</script>
+<noscript>Please enable JavaScript to view the <a href="https://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+<a href="https://disqus.com" class="dsq-brlink">comments powered by <span class="logo-disqus">Disqus</span></a>
+            </div>
+        </div>
+    </div>
+    <div class="column is-3">
+        <div class="card">
+    <div class="card-content">
+        <h1 class="title is-5">Tags</h1>
+        <div class="tags">
+        
+            <span class="tag"><a href="https://toshikunblog.net/tags/bat">bat</a></span>
+        
+            <span class="tag"><a href="https://toshikunblog.net/tags/camera">camera</a></span>
+        
+            <span class="tag"><a href="https://toshikunblog.net/tags/disney">disney</a></span>
+        
+            <span class="tag"><a href="https://toshikunblog.net/tags/github">github</a></span>
+        
+            <span class="tag"><a href="https://toshikunblog.net/tags/hugo">hugo</a></span>
+        
+            <span class="tag"><a href="https://toshikunblog.net/tags/lightroom">lightroom</a></span>
+        
+            <span class="tag"><a href="https://toshikunblog.net/tags/linux">linux</a></span>
+        
+            <span class="tag"><a href="https://toshikunblog.net/tags/mvno">mvno</a></span>
+        
+            <span class="tag"><a href="https://toshikunblog.net/tags/python">python</a></span>
+        
+            <span class="tag"><a href="https://toshikunblog.net/tags/rakuten%E3%83%A2%E3%83%90%E3%82%A4%E3%83%AB">rakutenモバイル</a></span>
+        
+            <span class="tag"><a href="https://toshikunblog.net/tags/raspberrypi">raspberrypi</a></span>
+        
+            <span class="tag"><a href="https://toshikunblog.net/tags/uq%E3%83%A2%E3%83%90%E3%82%A4%E3%83%AB">uqモバイル</a></span>
+        
+            <span class="tag"><a href="https://toshikunblog.net/tags/vpn">vpn</a></span>
+        
+            <span class="tag"><a href="https://toshikunblog.net/tags/youtube">youtube</a></span>
+        
+            <span class="tag"><a href="https://toshikunblog.net/tags/%E3%82%AB%E3%83%A1%E3%83%A9%E5%82%99%E5%BF%98%E9%8C%B2">カメラ備忘録</a></span>
+        
+            <span class="tag"><a href="https://toshikunblog.net/tags/%E3%82%B9%E3%83%94%E3%83%BC%E3%83%89%E3%83%86%E3%82%B9%E3%83%88">スピードテスト</a></span>
+        
+            <span class="tag"><a href="https://toshikunblog.net/tags/%E3%83%87%E3%82%A3%E3%82%BA%E3%83%8B%E3%83%BC%E3%83%9B%E3%83%86%E3%83%AB">ディズニーホテル</a></span>
+        
+            <span class="tag"><a href="https://toshikunblog.net/tags/%E3%83%8D%E3%83%83%E3%83%88%E3%83%AF%E3%83%BC%E3%82%AF">ネットワーク</a></span>
+        
+            <span class="tag"><a href="https://toshikunblog.net/tags/%E3%83%96%E3%83%AD%E3%82%B0">ブログ</a></span>
+        
+            <span class="tag"><a href="https://toshikunblog.net/tags/%E6%8A%80%E8%A1%93%E3%83%8D%E3%82%BF">技術ネタ</a></span>
+        
+            <span class="tag"><a href="https://toshikunblog.net/tags/%E8%88%9E%E6%B5%9C%E6%97%A5%E8%A8%98">舞浜日記</a></span>
+        
+            <span class="tag"><a href="https://toshikunblog.net/tags/%E9%9B%91%E8%A8%98">雑記</a></span>
+        
+        </div>          
+    </div>
+</div><br>
+        <div class="card">
+    <div class="card-content">
+        <h1 class="title is-5">Recent posts</h1>
+        
+            <h1><a href="https://toshikunblog.net/post/20200905/">ホテルミラコスタ滞在記【2020/08】Part①</a></h1>
+            <time class="has-text-grey-light is-size-7">5 September 2020</time>
+        
+            <h1><a href="https://toshikunblog.net/post/20200728/">Pythonでsshをしてみる</a></h1>
+            <time class="has-text-grey-light is-size-7">28 July 2020</time>
+        
+            <h1><a href="https://toshikunblog.net/post/20200724/">hugoでよく使うお作法</a></h1>
+            <time class="has-text-grey-light is-size-7">24 July 2020</time>
+        
+            <h1><a href="https://toshikunblog.net/post/20200717/">ラズパイでVPN(WireGuard)を構築した</a></h1>
+            <time class="has-text-grey-light is-size-7">17 July 2020</time>
+        
+            <h1><a href="https://toshikunblog.net/post/20200610/">hugoで目次(toc)を導入する</a></h1>
+            <time class="has-text-grey-light is-size-7">10 June 2020</time>
+        
+    </div>
+</div>
+    <br>
+                
+  
+
+
+
+<div class="card">
+    <div class="card-content">
+        <h1 class="title is-5">Related posts</h1>
+      
+      
+            <h1><a href="https://toshikunblog.net/post/20200724/">hugoでよく使うお作法</a></h1>
+            <time class="has-text-grey-light is-size-7">24 July 2020</time>
+      
+            <h1><a href="https://toshikunblog.net/post/20200303/">hugoでthemaをカスタマイズしてみたよ</a></h1>
+            <time class="has-text-grey-light is-size-7">3 March 2020</time>
+      
+    </div>
+</div>
+
+    
+<br>
+        <div class="card">
+    <div class="card-content">
+        <h1 class="title is-5">Archives</h1>
+        
+            <a href="https://toshikunblog.net/archives/2020/09">2020/09</a> (1)<br>
+        
+            <a href="https://toshikunblog.net/archives/2020/07">2020/07</a> (3)<br>
+        
+            <a href="https://toshikunblog.net/archives/2020/06">2020/06</a> (1)<br>
+        
+            <a href="https://toshikunblog.net/archives/2020/05">2020/05</a> (4)<br>
+        
+            <a href="https://toshikunblog.net/archives/2020/04">2020/04</a> (1)<br>
+        
+            <a href="https://toshikunblog.net/archives/2020/03">2020/03</a> (4)<br>
+        
+    </div>
+</div>
+
+    </div>
+</div>
+
+
+    </div>
+</div>
+
+<footer class="footer has-background-grey-darker has-text-white">
+    <div class="content has-text-centered">
+        <p>
+            <span class="icon is-large"><a href="https://twitter.com/toshikun_photo" class="mysocial" rel="me"><i class="fab fa-twitter fa-3x"></i></a></span>&nbsp;&nbsp;
+            <span class="icon is-large"><a href="https://www.youtube.com/channel/UChJwQKK0lApGygrgHDGAsfA?view_as=subscriber" class="mysocial" rel="me"><i class="fab fa-youtube fa-3x"></i></a></span>&nbsp;&nbsp;
+            <span class="icon is-large"><a href="https://www.instagram.com/toshikun_photo" class="mysocial" rel="me"><i class="fab fa-instagram fa-3x"></i></a></span>&nbsp;&nbsp;
+            <span class="icon is-large"><a href="https://github.com/toshikunphoto" class="mysocial" rel="me"><i class="fab fa-github fa-3x"></i></a></span>&nbsp;&nbsp;
+            <br><br>
+            Copyright &copy; Toshikun Dlife 2020 - Theme by <a href="https://jeffprod.com" class="mysocial">JeffProd.com</a>
+            <br>
+            <a class="mysocial" href="https://toshikunblog.net/page/contact">問い合わせ</a> - <a class="mysocial" href="https://toshikunblog.net/page/privacypolicy">プライバシーポリシー</a>
+        </p>
+    </div>
+</footer>
+<script defer src="https://use.fontawesome.com/releases/v5.1.0/js/all.js"></script>
+</body>
+</html>

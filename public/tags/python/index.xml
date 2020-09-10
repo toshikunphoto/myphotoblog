@@ -1,0 +1,23 @@
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>python on Toshikun Dlife</title>
+    <link>https://toshikunblog.net/tags/python/</link>
+    <description>Recent content in python on Toshikun Dlife</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <copyright>Copyright © 2020, @Toshikun</copyright>
+    <lastBuildDate>Tue, 28 Jul 2020 08:16:26 +0900</lastBuildDate>
+    
+        <atom:link href="https://toshikunblog.net/tags/python/index.xml" rel="self" type="application/rss+xml" />
+    
+    
+    <item>
+      <title>Pythonでsshをしてみる</title>
+      <link>https://toshikunblog.net/post/20200728/</link>
+      <pubDate>Tue, 28 Jul 2020 08:16:26 +0900</pubDate>
+      
+      <guid>https://toshikunblog.net/post/20200728/</guid>
+      <description>今(結構前から)流行りの自動化を&amp;hellip; なんやかんやしていたらもう7月終</description>
+    </item>
+    
+  </channel>
+</rss>

@@ -1,0 +1,140 @@
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Posts on Toshikun Dlife</title>
+    <link>https://toshikunblog.net/post/</link>
+    <description>Recent content in Posts on Toshikun Dlife</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <copyright>Copyright © 2020, @Toshikun</copyright>
+    <lastBuildDate>Sat, 05 Sep 2020 08:16:26 +0900</lastBuildDate>
+    
+        <atom:link href="https://toshikunblog.net/post/index.xml" rel="self" type="application/rss+xml" />
+    
+    
+    <item>
+      <title>ホテルミラコスタ滞在記【2020/08】Part①</title>
+      <link>https://toshikunblog.net/post/20200905/</link>
+      <pubDate>Sat, 05 Sep 2020 08:16:26 +0900</pubDate>
+      
+      <guid>https://toshikunblog.net/post/20200905/</guid>
+      <description>お久しぶりの舞浜日記 先日、連れの誕生日ということもあって以前から泊まりたかった、</description>
+    </item>
+    
+    <item>
+      <title>Pythonでsshをしてみる</title>
+      <link>https://toshikunblog.net/post/20200728/</link>
+      <pubDate>Tue, 28 Jul 2020 08:16:26 +0900</pubDate>
+      
+      <guid>https://toshikunblog.net/post/20200728/</guid>
+      <description>今(結構前から)流行りの自動化を&amp;hellip; なんやかんやしていたらもう7月終</description>
+    </item>
+    
+    <item>
+      <title>hugoでよく使うお作法</title>
+      <link>https://toshikunblog.net/post/20200724/</link>
+      <pubDate>Fri, 24 Jul 2020 15:16:26 +0900</pubDate>
+      
+      <guid>https://toshikunblog.net/post/20200724/</guid>
+      <description>備忘録 #その1 ちょっと忘れがちだけどいちいち調べている気がするのでまとめておきた</description>
+    </item>
+    
+    <item>
+      <title>ラズパイでVPN(WireGuard)を構築した</title>
+      <link>https://toshikunblog.net/post/20200717/</link>
+      <pubDate>Fri, 17 Jul 2020 00:16:26 +0900</pubDate>
+      
+      <guid>https://toshikunblog.net/post/20200717/</guid>
+      <description>Raspberry Pi 4でVPN(WireGuard)サーバーを構築したお話 2ヵ月ほど試行錯誤しな</description>
+    </item>
+    
+    <item>
+      <title>hugoで目次(toc)を導入する</title>
+      <link>https://toshikunblog.net/post/20200610/</link>
+      <pubDate>Wed, 10 Jun 2020 15:16:26 +0900</pubDate>
+      
+      <guid>https://toshikunblog.net/post/20200610/</guid>
+      <description>目次のすすめ こんにちは、toshikunです。みなさま、いかがお過ごしでしょうか</description>
+    </item>
+    
+    <item>
+      <title>～初心者向け～レタッチをいい感じにする【カメラ備忘録】</title>
+      <link>https://toshikunblog.net/post/20200528/</link>
+      <pubDate>Thu, 28 May 2020 08:26:31 +0900</pubDate>
+      
+      <guid>https://toshikunblog.net/post/20200528/</guid>
+      <description>レタッチってなぁに?? こんにちは、toshikunです。みなさま、いかがお過ごし</description>
+    </item>
+    
+    <item>
+      <title>ディズニーでの夜景撮影を考える【カメラ備忘録】</title>
+      <link>https://toshikunblog.net/post/20200520/</link>
+      <pubDate>Wed, 20 May 2020 08:26:31 +0900</pubDate>
+      
+      <guid>https://toshikunblog.net/post/20200520/</guid>
+      <description>【カメラ備忘録】夜景の撮影を考える こんにちは、toshikunです。 みなさま、い</description>
+    </item>
+    
+    <item>
+      <title>35thアニバーサリーセレブレーションストリート</title>
+      <link>https://toshikunblog.net/post/20200507/</link>
+      <pubDate>Thu, 07 May 2020 11:13:02 +0900</pubDate>
+      
+      <guid>https://toshikunblog.net/post/20200507/</guid>
+      <description>35thアニバーサリー セレブレーションストリート 先日、HDDを整理しておりました</description>
+    </item>
+    
+    <item>
+      <title>楽天モバイルどうなのよ問題</title>
+      <link>https://toshikunblog.net/post/20200504/</link>
+      <pubDate>Mon, 04 May 2020 10:13:13 +0900</pubDate>
+      
+      <guid>https://toshikunblog.net/post/20200504/</guid>
+      <description>楽天モバイル MNOとしてのRakutenモバイルってどうなのよ 私、toshiku</description>
+    </item>
+    
+    <item>
+      <title>去年の舞浜【04/28】</title>
+      <link>https://toshikunblog.net/post/20200428/</link>
+      <pubDate>Tue, 28 Apr 2020 10:13:13 +0900</pubDate>
+      
+      <guid>https://toshikunblog.net/post/20200428/</guid>
+      <description>去年の舞浜(2019/04/28) うさぴよ この日はTDSのみ。あんまり覚えていな</description>
+    </item>
+    
+    <item>
+      <title>去年の舞浜【03/24】</title>
+      <link>https://toshikunblog.net/post/20200324/</link>
+      <pubDate>Tue, 24 Mar 2020 09:10:10 +0900</pubDate>
+      
+      <guid>https://toshikunblog.net/post/20200324/</guid>
+      <description>去年の舞浜3月24日 TDS カフェ・ポルトフィーノでおいしさあふれるグラタンブレッドを</description>
+    </item>
+    
+    <item>
+      <title>githubにpushする作業をバッチ化</title>
+      <link>https://toshikunblog.net/post/20200318/</link>
+      <pubDate>Wed, 18 Mar 2020 11:57:22 +0900</pubDate>
+      
+      <guid>https://toshikunblog.net/post/20200318/</guid>
+      <description>githubにpushする作業をbat化 当ブログはhugoとgithub、net</description>
+    </item>
+    
+    <item>
+      <title>hugoでthemaをカスタマイズしてみたよ</title>
+      <link>https://toshikunblog.net/post/20200303/</link>
+      <pubDate>Tue, 03 Mar 2020 11:57:22 +0900</pubDate>
+      
+      <guid>https://toshikunblog.net/post/20200303/</guid>
+      <description>hugoとは 簡単に言えばGo言語で記述された静的サイトジェネレーターです。 インタ</description>
+    </item>
+    
+    <item>
+      <title>はじめに</title>
+      <link>https://toshikunblog.net/post/20200301/</link>
+      <pubDate>Sun, 01 Mar 2020 11:57:22 +0900</pubDate>
+      
+      <guid>https://toshikunblog.net/post/20200301/</guid>
+      <description>ブログを開設しました。 どうも、皆様はじめまして。 この度ブログを運営している管理者</description>
+    </item>
+    
+  </channel>
+</rss>

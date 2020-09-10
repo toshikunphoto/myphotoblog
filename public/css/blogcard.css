@@ -1,0 +1,118 @@
+/* カード全体像 */
+.blogcard {
+  max-width: 80%;
+  margin-bottom: 30px;
+  padding: 10px;
+  border-radius: 2px;
+  border: 1px solid rgb(211,211,211);
+  box-shadow: 0 10px 6px -6px rgba(0,0,0,.1);
+  background: white;
+  color: rgb(51,51,51);
+}
+
+/* float親要素 */
+.blogcard-content {
+  margin-bottom: 5px;
+  overflow: hidden;
+}
+
+/* 画像 */
+.blogcard-image {
+  display: inline-block;
+  float: right; /* 画像を左に配置したい場合は left に変更 1/2 */
+  width: 100px; /* 画像の表示サイズ変更は数値をpxで変更 1/6 */
+  height: 100px; /* 画像の表示サイズ変更は数値をpxで変更 2/6 */
+  margin: 0 0 5px 5px; /* 画像を左に配置したい場合は 0 10px 5px 0 に変更 2/2 */
+}
+
+.blogcard-image-wrapper {
+  display: inline-block;
+  width: 100px; /* 画像の表示サイズ変更は数値をpxで変更 3/6 */
+  height: 100px; /* 画像の表示サイズ変更は数値をpxで変更 4/6 */
+}
+
+.blogcard-image-wrapper img {
+  width: 100px; /* 画像の表示サイズ変更は数値をpxで変更 5/6 */
+  height: 100px; /* 画像の表示サイズ変更は数値をpxで変更 6/6 */
+  object-fit: cover;
+  object-position: center center;
+}
+
+/* タイトル */
+.blogcard-title {
+  margin: 0 !important;
+  font-weight: bold;
+  font-size: 15px;
+  line-height: 1.4;
+}
+
+.blogcard-title a {
+  color: rgb(61,63,68);
+  word-break: break-all;
+}
+
+.blogcard-title a:hover {
+  text-decoration: underline;
+}
+
+/* 引用 */
+.blogcard blockquote {
+  position: static;
+  margin: 0;
+  padding: 0;
+  border: 0;
+  background: transparent; /* ブログテンプレートに背景に関する強制力の強い指定がある場合には transparent の直後に !important を付けてください */
+}
+
+.blogcard blockquote::before,
+.blogcard blockquote::after {
+  content: none;
+}
+
+/* 記事概要 */
+.blogcard-description {
+  margin: 1em 0 !important;
+  font-size: 13px;
+  line-height: 1.5 !important;
+}
+
+/* フッター(元記事サイト名とリンク) */
+.blogcard-footer {
+  font-size: 12px;
+}
+
+.blogcard-footer a {
+  color: rgb(154,165,171);
+  text-decoration: underline;
+}
+
+.blogcard-footer a img {
+  margin-right: 5px;
+}
+.blogcard {
+  position: relative;
+}
+/* 任意(できればデフォルトCSSの同ルールセット内の記述を変更) */
+.blogcard-description {
+  margin: 1em 0 0 !important;
+}
+/* 任意ここまで */
+.blogcard-footer {
+  height: calc(12px * 1.2 * 2 + 10px);
+}
+.blogcard-footer a {
+  display: flex;
+  align-items: flex-end;
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  padding: 0 10px 10px;
+  line-height: 1.2;
+  word-break: break-all;
+  transition: .3s ease-in-out;/* 不要な場合は削除 */
+}
+.blogcard-footer a:hover {
+  box-shadow: 0 10px 10px 2px rgba(0,0,0,.1);
+}
