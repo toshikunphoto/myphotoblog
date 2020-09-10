@@ -1,4 +1,17 @@
-<section class="toc">
-    <h2>Contents</h2>
-    {{ .TableOfContents }}
-  </section>
+<link rel="stylesheet" href="https://toshikunblog.net/css/blogcard.css">
+{{- /* tocパラメータを確認 */ -}}
+{{- if (.Param "toc" | default true) -}}
+    {{- /* ここはさっきと同じ */ -}}
+      {{- $header := (findRE "<h[1-6].*?>(?:.|\n)*?</h[1-6]>" .Content) -}}
+      {{- $firstH := index $header 0 -}}
+
+      {{- if ne $firstH nil -}}
+          {{- $newH := printf `%s%s` .TableOfContents $firstH -}}
+          {{- replace .Content $firstH $newH | safeHTML -}}
+      {{- else -}}
+          {{- .Content -}}
+    {{- end -}}
+{{- else -}}
+    {{- /* ToC使わないとき */ -}}
+    {{- .Content -}}
+{{- end -}}
