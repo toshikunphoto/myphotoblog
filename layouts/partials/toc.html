@@ -1,14 +1,3 @@
-{{- /* tocパラメータを確認 */ -}}
-{{- if (.Param "toc" | default true) -}}
-    {{- /* 正規表現でh[1-6]を探す */ -}}
-    {{- $header := (findRE "<h[1-6].*?>(?:.|\n)*?</h[1-6]>" .Content) -}}
-    {{- /* 最初に出現するh[1-6]を取得 */ -}}
-    {{- $firstH := index $header 0 -}}
-        {{- /* ヘッダーの前にToCを結合した「新しいヘッダー」を作成 */ -}}
-        {{- $newH := printf `%s%s` .TableOfContents $firstH -}}
-        {{- /* 古いヘッダーを新しいヘッダーに置換して出力 */ -}}
-        {{- replace .Content $firstH $newH | safeHTML -}}
-{{- else -}}
-    {{- /* ToC使わないとき */ -}}
-    {{- .Content -}}
-{{- end -}}
+{{- $toc := .TableOfContents -}}
+{{- $toc := replaceRE `<ul>\n<li>\n<ul>` `<ul>` $toc -}}
+{{- safeHTML $toc -}}
