@@ -1,0 +1,49 @@
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>2020/03 on Toshikun Dlife</title>
+    <link>https://toshikunblog.net/archives/2020/03/</link>
+    <description>Recent content in 2020/03 on Toshikun Dlife</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <copyright>Copyright © 2020, @Toshikun</copyright>
+    
+        <atom:link href="https://toshikunblog.net/archives/2020/03/index.xml" rel="self" type="application/rss+xml" />
+    
+    
+    <item>
+      <title>去年の舞浜【03/24】</title>
+      <link>https://toshikunblog.net/post/20200324/</link>
+      <pubDate>Tue, 24 Mar 2020 09:10:10 +0900</pubDate>
+      
+      <guid>https://toshikunblog.net/post/20200324/</guid>
+      <description>去年の舞浜3月24日 TDS カフェ・ポルトフィーノでおいしさあふれるグラタンブレッドを</description>
+    </item>
+    
+    <item>
+      <title>githubにpushする作業をバッチ化</title>
+      <link>https://toshikunblog.net/post/20200318/</link>
+      <pubDate>Wed, 18 Mar 2020 11:57:22 +0900</pubDate>
+      
+      <guid>https://toshikunblog.net/post/20200318/</guid>
+      <description>githubにpushする作業をbat化 当ブログはhugoとgithub、net</description>
+    </item>
+    
+    <item>
+      <title>hugoでthemaをカスタマイズしてみたよ</title>
+      <link>https://toshikunblog.net/post/20200303/</link>
+      <pubDate>Tue, 03 Mar 2020 11:57:22 +0900</pubDate>
+      
+      <guid>https://toshikunblog.net/post/20200303/</guid>
+      <description>hugoとは 簡単に言えばGo言語で記述された静的サイトジェネレーターです。 インタ</description>
+    </item>
+    
+    <item>
+      <title>はじめに</title>
+      <link>https://toshikunblog.net/post/20200301/</link>
+      <pubDate>Sun, 01 Mar 2020 11:57:22 +0900</pubDate>
+      
+      <guid>https://toshikunblog.net/post/20200301/</guid>
+      <description>ブログを開設しました。 どうも、皆様はじめまして。 この度ブログを運営している管理者</description>
+    </item>
+    
+  </channel>
+</rss>

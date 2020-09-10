@@ -1,0 +1,23 @@
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>bat on Toshikun Dlife</title>
+    <link>https://toshikunblog.net/tags/bat/</link>
+    <description>Recent content in bat on Toshikun Dlife</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <copyright>Copyright © 2020, @Toshikun</copyright>
+    <lastBuildDate>Wed, 18 Mar 2020 11:57:22 +0900</lastBuildDate>
+    
+        <atom:link href="https://toshikunblog.net/tags/bat/index.xml" rel="self" type="application/rss+xml" />
+    
+    
+    <item>
+      <title>githubにpushする作業をバッチ化</title>
+      <link>https://toshikunblog.net/post/20200318/</link>
+      <pubDate>Wed, 18 Mar 2020 11:57:22 +0900</pubDate>
+      
+      <guid>https://toshikunblog.net/post/20200318/</guid>
+      <description>githubにpushする作業をbat化 当ブログはhugoとgithub、net</description>
+    </item>
+    
+  </channel>
+</rss>

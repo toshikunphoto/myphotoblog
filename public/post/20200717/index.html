@@ -1,0 +1,638 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <title>Toshikun Dlife  | ラズパイでVPN(WireGuard)を構築した</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link href="https://fonts.googleapis.com/css?family=Source+Code+Pro" rel="stylesheet">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bulma/0.7.1/css/bulma.min.css" />
+    <link rel="stylesheet" href="https://toshikunblog.net/css/blog.css" />
+    <link rel="stylesheet" href="https://toshikunblog.net/css/syntax.css" />
+    
+
+<script async src="https://www.googletagmanager.com/gtag/js?id=UA-165344098-1"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+  gtag('config', 'UA-165344098-1');
+</script>
+<script data-ad-client="ca-pub-4385015283597896" async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
+
+<link rel="apple-touch-icon" sizes="57x57" href="https://toshikunblog.net/img/favicon/apple-icon-57x57.png">
+<link rel="apple-touch-icon" sizes="60x60" href="https://toshikunblog.net/img/favicon/apple-icon-60x60.png">
+<link rel="apple-touch-icon" sizes="72x72" href="https://toshikunblog.net/img/favicon/apple-icon-72x72.png">
+<link rel="apple-touch-icon" sizes="76x76" href="https://toshikunblog.net/img/favicon/apple-icon-76x76.png">
+<link rel="apple-touch-icon" sizes="114x114" href="https://toshikunblog.net/img/favicon/apple-icon-114x114.png">
+<link rel="apple-touch-icon" sizes="120x120" href="https://toshikunblog.net/img/favicon/apple-icon-120x120.png">
+<link rel="apple-touch-icon" sizes="144x144" href="https://toshikunblog.net/img/favicon/apple-icon-144x144.png">
+<link rel="apple-touch-icon" sizes="152x152" href="https://toshikunblog.net/img/favicon/apple-icon-152x152.png">
+<link rel="apple-touch-icon" sizes="180x180" href="https://toshikunblog.net/img/favicon/apple-icon-180x180.png">
+<link rel="icon" type="image/png" sizes="192x192"  href="https://toshikunblog.net/img/favicon/android-icon-192x192.png">
+<link rel="icon" type="image/png" sizes="32x32" href="https://toshikunblog.net/img/favicon/favicon-32x32.png">
+<link rel="icon" type="image/png" sizes="96x96" href="https://toshikunblog.net/img/favicon/favicon-96x96.png">
+<link rel="icon" type="image/png" sizes="16x16" href="https://toshikunblog.net/img/favicon/favicon-16x16.png">
+<link rel="manifest" href="https://toshikunblog.net/img/favicon/faviconmanifest.json">
+<meta name="msapplication-TileColor" content="#ffffff">
+<meta name="msapplication-TileImage" content="/ms-icon-144x144.png">
+<meta name="theme-color" content="#ffffff">
+
+<meta property="og:title" content="ラズパイでVPN(WireGuard)を構築した" />
+<meta property="og:description" content="ipv6環境化のもとVPNServerをラズパイで構築したお話" />
+<meta property="og:type" content="article" />
+<meta property="og:url" content="https://toshikunblog.net/post/20200717/" />
+<meta property="og:image" content="https://toshikunblog.net/img/images.jpg"/>
+<meta property="article:published_time" content="2020-07-17T00:16:26+09:00" />
+<meta property="article:modified_time" content="2020-07-17T00:16:26+09:00" /><meta property="og:site_name" content="Toshikun Dlife" />
+
+<meta property="og:locale" content="ja_JP" />
+<meta property="twitter:card" content="summary"/>
+<meta property="twitter:image" content="https://toshikunblog.net/img/images.jpg"/>
+<meta property="twitter:title" content="Toshikun Dlife"/>
+<meta property="twitter:description" content="ipv6環境化のもとVPNServerをラズパイで構築したお話"/>
+</head>
+<body>
+    <meta name="google-site-verification" content="KeyqW3agkc-qs5Cu98SomK9YFLKxvCpChF9yBPIXEWo" />
+    
+    <nav class="navbar is-fixed-top" role="navigation" aria-label="main navigation">
+        <div class="navbar-brand">
+            <a class="navbar-item" href="https://toshikunblog.net/">Home</a>
+            <a class="navbar-item" href="https://toshikunblog.net/page/about">About me</a>
+        </div>
+    </nav>
+    
+
+    
+    <section class="hero is-info is-medium">
+        <div class="hero-body" style="background-image: url(https://toshikunblog.net/img/header-1.jpg);">
+            <div class="container has-text-centered">
+                <br>
+                <h1 class="title is-size-1">
+                    
+                        ラズパイでVPN(WireGuard)を構築した
+                    
+                </h1>
+                
+            </div>
+        </div>
+    </section>
+
+
+<div class="container">
+    <div class="section">
+    
+
+<div class="columns">
+    <div class="column is-9">
+        <div class="tile is-child box">
+            <div class="content">
+                
+                    
+                    
+                      
+                      <h1 id="raspberry-pi-4でvpnwireguardサーバーを構築したお話">Raspberry Pi 4でVPN(WireGuard)サーバーを構築したお話</h1>
+<hr>
+<p>2ヵ月ほど試行錯誤しながらVPNサーバーを構築していてついに運用できるレベルになったのでここに残しておきます。</p>
+<p>つーことでそのハマったVPN導入の変遷を綴りたいと思います。</p>
+<p><img src="https://lh3.googleusercontent.com/TjuzFz8lGHJJakblFr2wlnMfBzgl0dGZda6beHNgGuv3klU2PualTkehsF-8QAWAicGM39P06RJHNvKUbk2YBKzz-SSnoYjOu4tu7vSlkyvZS3u26JqK_RS-gCkr1TEBwkP2G4ibpg=w400" ></p>
+<p>↑の可愛いのがRaspberry Pi 4(手のひらサイズ)。実は2台目。現在稼働中の先輩ラズパイはファイルサーバーとして動いています。今回は2台目ラズパイに頑張っていただきVPNを張ります。笑</p>
+<section class="toc">
+    <div style="padding: 20px; border: solid 0.1px rgb(0, 0, 0); background-color: rgb(248, 248, 248);">
+    <h4>Contents</h4>
+    <nav id="TableOfContents">
+  <ol>
+    <li><a href="#1-vpnの利点">1. VPNの利点</a>
+      <ol>
+        <li><a href="#セキュリティーの向上とか">セキュリティーの向上とか</a></li>
+        <li><a href="#自宅lanアクセスが可能になる">自宅LANアクセスが可能になる</a></li>
+      </ol>
+    </li>
+    <li><a href="#2-raspiの設定">2. Raspiの設定</a>
+      <ol>
+        <li><a href="#osのインストール">OSのインストール</a></li>
+        <li><a href="#インストール">インストール</a></li>
+        <li><a href="#wireguardの設定">WireGuardの設定</a></li>
+        <li><a href="#サーバーとクライアント側の秘密鍵と公開鍵を生成する">サーバーとクライアント側の秘密鍵と公開鍵を生成する</a></li>
+      </ol>
+    </li>
+    <li><a href="#3-クライアント側サーバーの設定">3. クライアント側、サーバーの設定</a>
+      <ol>
+        <li><a href="#windows">Windows</a></li>
+        <li><a href="#サーバーの設定">サーバーの設定</a></li>
+        <li><a href="#サーバーのインターフェース設定">サーバーのインターフェース設定</a></li>
+        <li><a href="#ルータのポート解放">ルータのポート解放</a></li>
+        <li><a href="#サーバーのfirewall設定">サーバーのFirewall設定</a></li>
+      </ol>
+    </li>
+    <li><a href="#4-動かしていく">4. 動かしていく</a>
+      <ol>
+        <li><a href="#切り分けしてみる">切り分けしてみる</a></li>
+        <li><a href="#interfaceの設定を見直す">interfaceの設定を見直す</a></li>
+        <li><a href="#retry">Retry</a></li>
+      </ol>
+    </li>
+    <li><a href="#5-まとめ">5. まとめ</a></li>
+    <li><a href="#6-referenceacknowledgment">6. Reference＆Acknowledgment</a></li>
+  </ol>
+</nav>
+  </div>
+  </section>
+<h2 id="1-vpnの利点">1. VPNの利点</h2>
+<p>で、これを見ている方はVPNぐらい知ってるわ‼‼って方が多いと思うので詳しい説明はしません。(需要があれば、拙い言語と語彙力で解説したいと思いますが)</p>
+<p>簡単にメリットを書いておこうかなと思います。</p>
+<h3 id="セキュリティーの向上とか">セキュリティーの向上とか</h3>
+<p>皆さんはカフェのフリーWifiとか不特定多数の人がつなげるフリースポットとかって結構使いますかね。</p>
+<p>私は基本的にはテザリングとかでつなげてます。がですがふとした時に公共の無線LANにつなげることも合ったりなかったり。
+ただ繋げる想定がある以上、言うまでもなくセキュリティー的には良くないんですよね。</p>
+<p>特にフリーWifiとかは暗号化されていないので成りすましやのぞき見などのリスクが高まるってワケです。</p>
+<p>これを防ぐためにVPNという仮想専用線を通して通信することでセキュリティーレベルをあげるのが狙いです。</p>
+<p>ネットワークエンジニアだけどここら辺詳しくないからAWS ソリューションアーキテクトを取得したらネットワークの勉強しようかなと思ってます。</p>
+<h3 id="自宅lanアクセスが可能になる">自宅LANアクセスが可能になる</h3>
+<p>まあこれが一番の利点かな。自宅内LANにアクセスできるんですよね。今回は自宅の環境を例にちょいと説明したいと思います。</p>
+<p><img src="https://lh3.googleusercontent.com/ee4YeZvYFWL5Acf0XCeY4IJ9iAq6aiTEpHnloYukf8RlrWz2AV8ZjhC2qWv0g6WscY8qUOugnCDfHWw6naUbnH_Asw1Du_88nhyq99Au5KvZ2atA-Z3EEwsok1xhvOzlE2Qs8bsRYA=w1000" ></p>
+<p>一応これが自宅のネットワーク環境なわけですが「VPN接続」ってのがVPNの経路にあたります。厳密にいうとちょっと違うんですがここでは簡単に説明しています。</p>
+<p>本来『自宅LAN』に接続していないとFileServerにアクセスできないってわけです。
+それをVPNが実現します。</p>
+<p>《外出先》&mdash;《VPN》&mdash;《Tunnel》&mdash;《自宅LAN》</p>
+<p>イメージとしてはこんな↑感じです。なんかあったときに外出先でも自宅のセグメントにアクセスできるので作業の幅が広がります。(実は今回の目的はこれが一番大きいかも。)</p>
+<p>省電力で常時起動させておくにはラズパイがぴったりのなので軽い動作をさせたい場合はかなり便利だと思います。</p>
+<h2 id="2-raspiの設定">2. Raspiの設定</h2>
+<h3 id="osのインストール">OSのインストール</h3>
+<p>Raspbbery piにOSをダウンロードしなければいけませんが、ふつうにRaspbian（ラズビアン）で正常に動くので問題ないかと思います。ここでは説明しないので下記のサイトを参考にすればできるかと思います。</p>
+<p><a href="https://raspida.com/setup-raspbian4rpi4b-2020">Raspberry Pi 4にRaspbianの初期設定2020年版</a></p>
+<h3 id="インストール">インストール</h3>
+<p><a href="https://github.com/adrianmihalko/raspberrypiwireguard">https://github.com/adrianmihalko/raspberrypiwireguard</a></p>
+<p>基本的にはこの資料を見れば結構できると思います。
+(だた英語なのでちょっと抵抗ある方はGoogle翻訳していただければ意外とできちゃうとおもいますよ。</p>
+<p>個人的には<a href="https://blog.koh.dev/2020-01-01-vpn/">こちら</a>の方の資料もわかりやすかったので合わせて参考にしていただければと思います。</p>
+<p>いや~ほんとに先人の方たちの知恵に感謝ですね。</p>
+<p>とりあえず以下のコマンドをそのまま流していけると思います。自分は権限の都合上sudoつけてますがroot権限で入ってもらえれば楽かと思いますのでお好きな方法でやってください。(たしかsudo su- かな)</p>
+<p>・コマンド群
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash">VPNServer@raspberrypi:~ $ sudo apt-get update
+VPNServer@raspberrypi:~ $ sudo apt-get upgrade
+VPNServer@raspberrypi:~ $ sudo apt-get install raspberrypi-kernel-headers
+VPNServer@raspberrypi:~ $ echo <span style="color:#e6db74">&#34;deb http://deb.debian.org/debian/ unstable main&#34;</span> | sudo tee --append /etc/apt/sources.list.d/unstable.list
+VPNServer@raspberrypi:~ $ sudo apt-get install dirmngr
+VPNServer@raspberrypi:~ $ sudo apt-key adv --keyserver hkp://keyserver.ubuntu.com:80 --recv-keys 8B48AD6246925553
+VPNServer@raspberrypi:~ $ sudo apt-key adv --keyserver hkp://keyserver.ubuntu.com:80 --recv-keys 7638D0442B90D010
+VPNServer@raspberrypi:~ $ sudo apt-key adv --keyserver hkp://keyserver.ubuntu.com:80 --recv-keys 04EE7237B7D453EC
+VPNServer@raspberrypi:~ $ printf <span style="color:#e6db74">&#39;Package: *\nPin: release a=unstable\nPin-Priority: 150\n&#39;</span> | sudo tee --append /etc/apt/preferences.d/limit-unstable
+VPNServer@raspberrypi:~ $ sudo apt-get update
+VPNServer@raspberrypi:~ $ sudo apt-get install wireguard
+VPNServer@raspberrypi:~ $ sudo reboot</code></pre></div></p>
+<p><code>sudo apt-get update</code>と<code>sudo apt-get upgrade</code>が結構時間かかりました。
+コーヒーでも飲みながら待ちましょう</p>
+<p>再起動まで終わったら次は以下を実施。</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash"><span style="color:#75715e">#rebootで再起動を実施したら/etc/sysctl.confを編集します。</span>
+<span style="color:#75715e">#パラメータが=1のときフォア―ディングを有効にして、=0のとき無効化になるらしいです。</span>
+VPNServe@raspberrypi:~ $ sudo perl -pi -e <span style="color:#e6db74">&#39;s/#{1,}?net.ipv4.ip_forward ?= ?(0|1)/net.ipv4.ip_forward = 1/g&#39;</span> /etc/sysctl.conf
+<span style="color:#75715e">#再起動して設定を反映させる。</span>
+VPNServe@raspberrypi:~ $ sudo reboot</code></pre></div>
+<p>再起動後、設定が反映されているか確認するために下記のコマンドで確認します。</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash">VPNServe@raspberrypi:~ $ sysctl net.ipv4.ip_forward
+net.ipv4.ip_forward <span style="color:#f92672">=</span> <span style="color:#ae81ff">1</span>
+<span style="color:#75715e">#1になっているので問題なさそう。</span></code></pre></div>
+<p>これでインストールは完了です。続いてVPN接続ができるように設定をしていきます。</p>
+<h3 id="wireguardの設定">WireGuardの設定</h3>
+<h3 id="サーバーとクライアント側の秘密鍵と公開鍵を生成する">サーバーとクライアント側の秘密鍵と公開鍵を生成する</h3>
+<p>サーバーとクライアントのやり取りするための鍵ですね。
+こいつらを作成していきます。
+※秘密鍵と公開鍵についてはざっくりそういうものがあるんだ～という風に思っていただければよいですね。</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash">VPNServe@raspberrypi:~ $ mkdir wgkeys
+VPNServe@raspberrypi:~ $ cd wgkeys
+VPNServe@raspberrypi:~/wgkeys $ wg genkey &gt; server_private.key
+Warning: writing to world accessible file.
+Consider setting the umask to <span style="color:#ae81ff">077</span> and trying again.
+VPNServe@raspberrypi:~/wgkeys $ wg pubkey &gt; server_public.key &lt; server_private.key
+<span style="color:#75715e">#wgkeys配下に生成した物ができているかを確認する。</span>
+VPNServe@raspberrypi:~/wgkeys $ ls
+server_private.key server_public.key</code></pre></div>
+<p>ちなみにこの鍵たちの管理には気を付けてくださいね。流出するとキケンなので。。。。</p>
+<p>で、ここからはクライアント側の作業です。</p>
+<h2 id="3-クライアント側サーバーの設定">3. クライアント側、サーバーの設定</h2>
+<h3 id="windows">Windows</h3>
+<p>今回はWindows環境でインストールをしましょう。(Mac持ってないので&hellip;)
+調べてみたらスマートフォン(iPhone,Android)でもできるらしいので余裕のある方はやってみるのもいいかも。</p>
+<p><a href="https://www.wireguard.com/install/">https://www.wireguard.com/install/</a>にアクセスして自分の環境にあったものをダウンロードしましょう。</p>
+<p>・ダウンロードが終わったら早速アプリケーションを起動。</p>
+<p><img src="https://lh3.googleusercontent.com/vNfsRjJ0fjdf57i_zcG7W1AnOCP1p8vSLujh5USLESP9NGffCxaThSaoG3KdKNu08PrO6maL36vHdHn1VBExKhkiLfcMAMx3eaAhr8fYErQjLo-yAaKX9_cnlr8N3kODllfOldShmg=w400" ></p>
+<p>・左下にある「空のトンネルを追加&hellip;(E)」を選択。</p>
+<p><img src="https://lh3.googleusercontent.com/4Rrx7TcigaJeGE_eW034OzcBK6GMjTjZ19lxRjcy3Y0W2KplMpd1s4zud3nLhpywVQaVdLt5YFcNriiKazaviVc2PtvKZM4IRu80fD3--TNeAyE9NTSZzpn9jv6wbNqSo84765Xl3Q=w400" ></p>
+<p>・新規でトンネルを作成する画面になります。</p>
+<p><img src="https://lh3.googleusercontent.com/xynbFjTVUR2zAM7cyuuv7QqbHQiWbF7gyXZEczCj9QkewWprcnwCQ2rRACcWnKAkqeOBRIkvNoVq_EOhuG1Mpa0UM-JFzSxyFUdzQzsWt0gUhjcyeS0FV8BIq1NM6gplx5yoPw3qtA=w400" ></p>
+<p>名前は任意の物で大丈夫です。私はVPNServerとかにしました。わかりやすい名前にしてあげると便利です。</p>
+<p>また新規作成をした時点で「公開鍵(Publickey)」(◎◎)と「PrivateKey(秘密鍵)」(★★)は入力されている状態で出てきます。
+この二つの情報は後で使いますので控えておきましょう。</p>
+<p>そしてこれだけでは情報が足りませんのでさらに情報を書き加えてやると最終的にはこうなります。</p>
+<p><img src="https://lh3.googleusercontent.com/sm-0FvEk668RdS8mnuNimLihN6CX-fx2LaSL4RyC9kVXmL_TYvEHoLJ2gVgzGvAKjvdCFfBtBlWujGVSsIq7v0TJ7G4ZAXp0OPGkmbMfxf64dzz53rTboKeFyvaP8yrsUn3r7ak_7w=w400" ></p>
+<p>またそれぞれのパラメータに渡す値はこんな感じ。</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash"><span style="color:#f92672">[</span>Interface<span style="color:#f92672">]</span>
+PrivateKey <span style="color:#f92672">=</span> <span style="color:#f92672">(</span>★★<span style="color:#f92672">)</span>
+<span style="color:#75715e">#クライアントに指定したいIP(便宜上、今回は以下のIPを使用)</span>
+Address <span style="color:#f92672">=</span> 10.0.0.2/24
+
+<span style="color:#f92672">[</span>Peer<span style="color:#f92672">]</span>
+<span style="color:#75715e">#ラズパイ側の公開鍵を入力(◆◆)</span>
+PublicKey <span style="color:#f92672">=</span> <span style="color:#f92672">(</span>Raspberry Pi 側のPublicKey<span style="color:#f92672">)</span>
+<span style="color:#75715e">#アクセスを許可するIP(Raspberry Pi側に指定したいIp。なぜかここは(/32)で指定しないとだめらしい。)+αで自宅LANのセグメントもアクセスできるようにしておきます。</span>
+AllowedIPs <span style="color:#f92672">=</span> 10.0.0.1/32,192.168.1.0/24
+<span style="color:#75715e">#ServerのグローバルIPとポート番号の指定(ちなみに51820はデフォルトで、任意に決めても大丈夫です)</span>
+Endpoint <span style="color:#f92672">=</span> 1.1.1.1:51820</code></pre></div>
+<h3 id="サーバーの設定">サーバーの設定</h3>
+<p>行ったり来たりしてごめんなさい。またサーバーの設定します。自分の文章の構成能力のなさにここで気づくってワケ。</p>
+<p>上記で生成した秘密鍵と公開鍵を作成しましたがそれを使います。</p>
+<p>今回はlessコマンド使ってますがcatコマンドとか、とにかく内容が確認できれば良いです。</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash"><span style="color:#75715e">#Serverの公開鍵(◆◆)</span>
+VPNServe@raspberrypi:~/wgkeys $ less server_public.key
+<span style="color:#75715e">#Serverの秘密鍵(〇〇)</span>
+VPNServe@raspberrypi:~/wgkeys $ less server_private.key</code></pre></div>
+<h3 id="サーバーのインターフェース設定">サーバーのインターフェース設定</h3>
+<p>続いてサーバーのインターフェース設定をしていきます。</p>
+<p>そーいえば、いままでLinux特有のviコマンドが嫌いだったんですがnanoコマンドで編集したらめちゃんこ楽ちんでした。</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash">VPNServe@raspberrypi:~/wgkeys $ sudo nano /etc/wireguard/wg0.conf
+<span style="color:#f92672">[</span>Interface<span style="color:#f92672">]</span><span style="color:#75715e">#Serverの設定</span>
+<span style="color:#75715e">#Serverの秘密鍵を入力(〇〇)</span>
+PrivateKey <span style="color:#f92672">=</span> &lt;server_private.key&gt;
+<span style="color:#75715e">#ここはクライアント側と同じセグメントに設定する。(ここは/24)</span>
+Address <span style="color:#f92672">=</span> 10.0.0.1/24
+<span style="color:#75715e">#リッスンポートは任意なので今回はデフォルトの値を設定。</span>
+ListenPort <span style="color:#f92672">=</span> <span style="color:#ae81ff">51820</span>
+
+<span style="color:#75715e">#replace eth0 with the interface open to the internet (e.g might be wlan0 if wifi)</span>
+PostUp <span style="color:#f92672">=</span> iptables -A FORWARD -i %i -j ACCEPT; iptables -A FORWARD -o %i -j ACCEPT; iptables -t nat -A POSTROUTING -o eth0 -j MASQUERADE
+PostDown <span style="color:#f92672">=</span> iptables -D FORWARD -i %i -j ACCEPT; iptables -D FORWARD -o %i -j ACCEPT; iptables -t nat -D POSTROUTING -o eth0 -j MASQUERADE
+<span style="color:#75715e">#PostUpとPostDownについてはコピーでいいと思います。Raspiを無線でつなげている人は`eth0`を`wlan0`に変えましょう。</span>
+<span style="color:#f92672">(</span>ちなみに私はここでハマりました。また後で説明します。<span style="color:#f92672">)</span>
+
+<span style="color:#f92672">[</span>Peer<span style="color:#f92672">]</span><span style="color:#75715e">#PC側の設定を入れる。</span>
+PublicKey <span style="color:#f92672">=</span> <span style="color:#f92672">(</span>◎◎<span style="color:#f92672">)</span>
+<span style="color:#75715e">#もちろんここはWinPCの仮想アドレス。(/32で指定しないとここもだめっぽい。)</span>
+AllowedIPs <span style="color:#f92672">=</span> 10.0.0.2/32</code></pre></div>
+<p>次はルータのポート解放を行っていきます。</p>
+<h3 id="ルータのポート解放">ルータのポート解放</h3>
+<p>ここでは外部から接続を行う為にルーターの設定をしていきます。</p>
+<p>我が家のルータはNECのAterm　Aterm WG2600HP3　なのでこれを例に見ていきましょう。</p>
+<p>このルータをお持ちの方はこちらを参考にしていただけるとわかりやすいかと思います。
+<a href="https://www.aterm.jp/function/wg2600hp3/guide/portmapping.html">https://www.aterm.jp/function/wg2600hp3/guide/portmapping.html</a></p>
+<p><img src="https://lh3.googleusercontent.com/TdyRaQ3ZNsmOW4eUHshmiyepT_vmja0IQ_UUQLbhw5kCusstqvIhA6xyM-GqB7OLGCeO2MU3v8M8KPPVUI0n9nrvBi2L8m145x7KgReW4sqR2r_XRIQdP1jC9fdvbTQ-c8N4WAPLWA=w736" ></p>
+<p>① 優先度 : お好みでどうぞ(私は1にしました笑)</p>
+<p>② LAN側ホスト : Raspberry Pi(VPNServerのローカルIP)</p>
+<p>③ プロトコル : UDPに変更</p>
+<p>④ 変換対象ポート番号 : 今回はデフォルトにしてみました。基本的には任意でいいかと思います。(モザイクがかかっているところから選択しましょう。使用できるportのpoolだと思っていただければ)</p>
+<p>⑤ 宛先ポート番号 : 今回はデフォルトにしてみました。上に同じく任意です。(Raspberry Pi にFirewallを設定してそこにここで指定したポート番号で穴を開けます。)</p>
+<p>最後に設定をクリックして反映。あともう少し。</p>
+<h3 id="サーバーのfirewall設定">サーバーのFirewall設定</h3>
+<p>毎回sudoやるの面倒な方はroot権限でやってください(自分は最後に気付いた)</p>
+<p>root権限でやるには<code>sudo su</code>してください
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash">VPNServe@raspberrypi:~$sudo su 
+VPNServe@raspberrypi:~#</code></pre></div></p>
+<p>んでここからが本題
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash"><span style="color:#75715e">#ufw(ファイアウォール)をまずインストール</span>
+VPNServe@raspberrypi:~$sudo apt-get install ufw
+<span style="color:#75715e">#特定の通信のみ許可したいので基本deny</span>
+VPNServe@raspberrypi:~$sudo ufw default deny
+Default incoming policy changed to <span style="color:#e6db74">&#39;deny&#39;</span>
+<span style="color:#f92672">(</span>be sure to update your rules accordingly<span style="color:#f92672">)</span>
+<span style="color:#75715e">#VPNクライアントとサーバーは通信させる必要があるのでこのセグメントはallow</span>
+VPNServe@raspberrypi:~$sudo ufw allow in from 10.0.0.0/24
+Rule added
+<span style="color:#75715e">#家庭内LANは192.168.1.0/24からVPNServerを経由して外に出ていけるようにする必要があるのでこのセグメントもallow(ipは各自読み替えてください)</span>
+VPNServe@raspberrypi:~$sudo ufw allow in from 192.168.1.0/24
+Rule added
+<span style="color:#75715e">#プロトコルの許可</span>
+VPNServe@raspberrypi:~$sudo ufw allow 1111/udp
+Rule added
+Rule added <span style="color:#f92672">(</span>v6<span style="color:#f92672">)</span>
+<span style="color:#75715e">#設定後のステータスを見てみる</span>
+VPNServe@raspberrypi:~$sudo ufw status numbered
+Status: active
+To Action From
+--　------ ----
+<span style="color:#f92672">[</span> 1<span style="color:#f92672">]</span> Anywhere ALLOW IN 192.168.1.0/24
+<span style="color:#f92672">[</span> 2<span style="color:#f92672">]</span> Anywhere ALLOW IN 10.0.0.0/24
+<span style="color:#f92672">[</span> 4<span style="color:#f92672">]</span> 1111/udp ALLOW IN Anywhere
+<span style="color:#f92672">[</span> 5<span style="color:#f92672">]</span> 1111/udp <span style="color:#f92672">(</span>v6<span style="color:#f92672">)</span> ALLOW IN Anywhere <span style="color:#f92672">(</span>v6<span style="color:#f92672">)</span>
+
+VPNServe@raspberrypi:~$</code></pre></div>
+うまくいったっぽい。</p>
+<h2 id="4-動かしていく">4. 動かしていく</h2>
+<p><img src="https://lh3.googleusercontent.com/-bYHpYxu9C_mKWw89BTHYFw_Eai6iRQsW-AZsvC3yUqs7cwvZ9QEz1n3QXbU-R2SXYcjQWp0hLvOmdi39jDP-uERQAUr5_Tva552kpvN1-Ag9W7CVRNLXAqnQRdG0YUO45qVsv-J4w=w2400
+" >
+このような状態になっているかと思いますのでPCのNWの接続先を自宅以外にします。たとえばテザリング</p>
+<p>そして『有効化(A)』をクリック。有効化が完了するとポップアップが出てVPNが有効になっているよ‼と教えてくれます。</p>
+<p>まず自分のIPを確認してみますかね。</p>
+<p>コマンドプロンプトを起動してIpを見てましょう。
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-cmd" data-lang="cmd">C:\<span style="color:#75715e">&gt;ipconfig</span>
+
+Windows IP 構成
+
+
+イーサネット アダプター イーサネット 2:
+
+   メディアの状態. . . . . . . . . . . .: メディアは接続されていません
+   接続固有の DNS サフィックス . . . . .:
+
+不明なアダプター RaspiVPN:
+
+   接続固有の DNS サフィックス . . . . .:
+   IPv4 アドレス . . . . . . . . . . . .: 10.0.0.2
+   サブネット マスク . . . . . . . . . .: 255.255.255.0
+   デフォルト ゲートウェイ . . . . . . .:</code></pre></div>
+実際に<code>10.0.0.2</code>になっています。</p>
+<p>PCからVPNServerにpingを打ってみる。
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-cmd" data-lang="cmd">C:\<span style="color:#75715e">&gt;ping 10.0.0.1</span>
+
+10.0.0.1 に ping を送信しています 32 バイトのデータ:
+10.0.0.1 からの応答: バイト数 =32 時間 =78ms TTL=64
+10.0.0.1 からの応答: バイト数 =32 時間 =65ms TTL=64
+10.0.0.1 からの応答: バイト数 =32 時間 =98ms TTL=64
+10.0.0.1 からの応答: バイト数 =32 時間 =91ms TTL=64
+
+10.0.0.1 の ping 統計:
+    パケット数: 送信 = 4、受信 = 4、損失 = 0 (0% の損失)、
+ラウンド トリップの概算時間 (ミリ秒):
+    最小 = 65ms、最大 = 98ms、平均 = 83ms</code></pre></div>
+できた!!!!!!(<em>&lsquo;ω&rsquo;</em>)</p>
+<p>これで一応VPNServerまでは疎通ができることが確認できました。(10.0.0.1～10.0.0.2の間の疎通)</p>
+<p>一応ためしにsshでVPNServerにアクセスしてみるといいと思います。Ipは10.0.0.1となります。
+次に自宅LANと想定したセグメント<code>192.168.1.0/24</code>にアクセスでできるか試してみます。
+ある端末を固定:192.168.1.10で自宅LANにつなげた状態でPing打ってみます。</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-cmd" data-lang="cmd">C:\<span style="color:#75715e">&gt;ping 192.168.1.10</span>
+
+192.168.1.10 に ping を送信しています 32 バイトのデータ:
+要求がタイムアウトしました。
+要求がタイムアウトしました。
+要求がタイムアウトしました。
+要求がタイムアウトしました。
+
+192.168.1.10 の ping 統計:
+    パケット数: 送信 = 4、受信 = 0、損失 = 4 (100% の損失)、
+
+C:\<span style="color:#75715e">&gt;</span></code></pre></div>
+<p>( ,,`･ω･´)ﾝﾝﾝ？行かないぞ。。。。</p>
+<h3 id="切り分けしてみる">切り分けしてみる</h3>
+<p>切り分けとしてsshでVPNServerにはアクセスできるのでそこからpingが打てるか試してみる。</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash">VPNServe@raspberrypi:~ $ ping 192.168.1.10
+PING 192.168.1.10 <span style="color:#f92672">(</span>192.168.2.200<span style="color:#f92672">)</span> 56<span style="color:#f92672">(</span>84<span style="color:#f92672">)</span> bytes of data.
+<span style="color:#ae81ff">64</span> bytes from 192.168.1.10: icmp_seq<span style="color:#f92672">=</span><span style="color:#ae81ff">1</span> ttl<span style="color:#f92672">=</span><span style="color:#ae81ff">64</span> time<span style="color:#f92672">=</span>0.217 ms
+<span style="color:#ae81ff">64</span> bytes from 192.168.1.10: icmp_seq<span style="color:#f92672">=</span><span style="color:#ae81ff">2</span> ttl<span style="color:#f92672">=</span><span style="color:#ae81ff">64</span> time<span style="color:#f92672">=</span>0.186 ms
+<span style="color:#ae81ff">64</span> bytes from 192.168.1.10: icmp_seq<span style="color:#f92672">=</span><span style="color:#ae81ff">3</span> ttl<span style="color:#f92672">=</span><span style="color:#ae81ff">64</span> time<span style="color:#f92672">=</span>0.178 ms
+<span style="color:#ae81ff">64</span> bytes from 192.168.1.10: icmp_seq<span style="color:#f92672">=</span><span style="color:#ae81ff">4</span> ttl<span style="color:#f92672">=</span><span style="color:#ae81ff">64</span> time<span style="color:#f92672">=</span>0.184 ms
+<span style="color:#ae81ff">64</span> bytes from 192.168.1.10: icmp_seq<span style="color:#f92672">=</span><span style="color:#ae81ff">5</span> ttl<span style="color:#f92672">=</span><span style="color:#ae81ff">64</span> time<span style="color:#f92672">=</span>0.200 ms
+<span style="color:#ae81ff">64</span> bytes from 192.168.1.10: icmp_seq<span style="color:#f92672">=</span><span style="color:#ae81ff">6</span> ttl<span style="color:#f92672">=</span><span style="color:#ae81ff">64</span> time<span style="color:#f92672">=</span>0.176 ms
+^C
+--- 192.168.1.10 ping statistics ---
+<span style="color:#ae81ff">6</span> packets transmitted, <span style="color:#ae81ff">6</span> received, 0% packet loss, time 245ms
+rtt min/avg/max/mdev <span style="color:#f92672">=</span> 0.176/0.190/0.217/0.016 ms</code></pre></div>
+<p>どうやらpingは飛ぶみたいなのでVPN周りの設定が怪しそう。
+とりあえずVPNServerのインターフェース周りの設定を見てみます。</p>
+<h3 id="interfaceの設定を見直す">interfaceの設定を見直す</h3>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash">VPNServe@raspberrypi:~/wgkeys $ sudo cat /etc/wireguard/wg0.conf
+<span style="color:#f92672">[</span>Interface<span style="color:#f92672">]</span><span style="color:#75715e">#Serverの設定</span>
+<span style="color:#75715e">#Serverの秘密鍵を入力(〇〇)</span>
+PrivateKey <span style="color:#f92672">=</span> &lt;server_private.key&gt;
+<span style="color:#75715e">#ここはクライアント側と同じセグメントに設定する。(ここは/24)</span>
+Address <span style="color:#f92672">=</span> 10.0.0.1/24
+<span style="color:#75715e">#リッスンポートは任意なので今回はデフォルトの値を設定。</span>
+ListenPort <span style="color:#f92672">=</span> <span style="color:#ae81ff">51820</span>
+
+<span style="color:#75715e">#replace eth0 with the interface open to the internet (e.g might be wlan0 if wifi)</span>
+PostUp <span style="color:#f92672">=</span> iptables -A FORWARD -i %i -j ACCEPT; iptables -A FORWARD -o %i -j ACCEPT; iptables -t nat -A POSTROUTING -o eth0 -j MASQUERADE
+PostDown <span style="color:#f92672">=</span> iptables -D FORWARD -i %i -j ACCEPT; iptables -D FORWARD -o %i -j ACCEPT; iptables -t nat -D POSTROUTING -o eth0 -j MASQUERADE
+
+<span style="color:#f92672">[</span>Peer<span style="color:#f92672">]</span><span style="color:#75715e">#PC側の設定を入れる。</span>
+PublicKey <span style="color:#f92672">=</span> <span style="color:#f92672">(</span>◎◎<span style="color:#f92672">)</span>
+<span style="color:#75715e">#もちろんここはWinPCの仮想アドレス。(/32で指定しないとここもだめっぽい。)</span>
+AllowedIPs <span style="color:#f92672">=</span> 10.0.0.2/32</code></pre></div>
+<p><strong>自分が怪しいと思ったのはここ↓</strong></p>
+<blockquote>
+<p>PostUp = iptables -A FORWARD -i %i -j ACCEPT; iptables -A FORWARD -o %i -j ACCEPT; iptables -t nat -A POSTROUTING -o eth0 -j MASQUERADE</p>
+</blockquote>
+<blockquote>
+<p>PostDown = iptables -D FORWARD -i %i -j ACCEPT; iptables -D FORWARD -o %i -j ACCEPT; iptables -t nat -D POSTROUTING -o eth0 -j MASQUERADE</p>
+</blockquote>
+<p>この<code>eth0</code>は実際のNICに書き換えてやらないといけないんですが書き換える場合ってRaspbbery piを無線でつなげてる時ぐらいなんですよね。一応。</p>
+<p>たしか以前SoftEtherの導入の際に仮想でbr0というNICを作ったままだったような記憶が蘇って来たので確認してみる。</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash">VPNServe@raspberrypi:~ $ ifconfig -a
+br0: flags<span style="color:#f92672">=</span>4163&lt;UP,BROADCAST,RUNNING,MULTICAST&gt;  mtu <span style="color:#ae81ff">1500</span>
+        inet 192.168.1.254  netmask 255.255.255.0  broadcast 192.168.1.255
+        inet6 0000:0000:0000:0000:0000:0000:0000:0000  prefixlen <span style="color:#ae81ff">64</span>  scopeid 0x0 &lt;global&gt;
+        inet6 0000:0000:0000:0000:0000:0000:0000:0000  prefixlen <span style="color:#ae81ff">64</span>  scopeid 0x20 &lt;link&gt;
+        ether 5e:8a:9d:ea:a6:36  txqueuelen <span style="color:#ae81ff">1000</span>  <span style="color:#f92672">(</span>イーサネット<span style="color:#f92672">)</span>
+        RX packets <span style="color:#ae81ff">7227</span>  bytes <span style="color:#ae81ff">1031014</span> <span style="color:#f92672">(</span>1006.8 KiB<span style="color:#f92672">)</span>
+        RX errors <span style="color:#ae81ff">0</span>  dropped <span style="color:#ae81ff">0</span>  overruns <span style="color:#ae81ff">0</span>  frame <span style="color:#ae81ff">0</span>
+        TX packets <span style="color:#ae81ff">6194</span>  bytes <span style="color:#ae81ff">685937</span> <span style="color:#f92672">(</span>669.8 KiB<span style="color:#f92672">)</span>
+        TX errors <span style="color:#ae81ff">0</span>  dropped <span style="color:#ae81ff">0</span> overruns <span style="color:#ae81ff">0</span>  carrier <span style="color:#ae81ff">0</span>  collisions <span style="color:#ae81ff">0</span>
+
+eth0: flags<span style="color:#f92672">=</span>4419&lt;UP,BROADCAST,RUNNING,PROMISC,MULTICAST&gt;  mtu <span style="color:#ae81ff">1500</span>
+        ether dc:a6:32:7a:cc:3c  txqueuelen <span style="color:#ae81ff">1000</span>  <span style="color:#f92672">(</span>イーサネット<span style="color:#f92672">)</span>
+        RX packets <span style="color:#ae81ff">15055</span>  bytes <span style="color:#ae81ff">1693365</span> <span style="color:#f92672">(</span>1.6 MiB<span style="color:#f92672">)</span>
+        RX errors <span style="color:#ae81ff">0</span>  dropped <span style="color:#ae81ff">0</span>  overruns <span style="color:#ae81ff">0</span>  frame <span style="color:#ae81ff">0</span>
+        TX packets <span style="color:#ae81ff">15383</span>  bytes <span style="color:#ae81ff">1204307</span> <span style="color:#f92672">(</span>1.1 MiB<span style="color:#f92672">)</span>
+        TX errors <span style="color:#ae81ff">0</span>  dropped <span style="color:#ae81ff">0</span> overruns <span style="color:#ae81ff">0</span>  carrier <span style="color:#ae81ff">0</span>  collisions <span style="color:#ae81ff">0</span>
+VPNServe@raspberrypi:~ $</code></pre></div>
+<p>やっぱりそうだったwwww
+仮想で<code>br0</code>というインターフェースをぶら下げてました。</p>
+<p>反省しながら該当箇所を書き換えてみます。</p>
+<blockquote>
+<p>PostUp = iptables -A FORWARD -i %i -j ACCEPT; iptables -A FORWARD -o %i -j ACCEPT; iptables -t nat -A POSTROUTING -o br0 -j MASQUERADE</p>
+</blockquote>
+<blockquote>
+<p>PostDown = iptables -D FORWARD -i %i -j ACCEPT; iptables -D FORWARD -o %i -j ACCEPT; iptables -t nat -D POSTROUTING -o br0 -j MASQUERADE</p>
+</blockquote>
+<p>これで一応いけると思いますが正常な設定としては仮想interfaceの設定を消して物理interfacecに戻すがいいのかな???動いているからヨシ‼</p>
+<p>設定したらrebootしてワクワクしながら待ちましょう。</p>
+<h3 id="retry">Retry</h3>
+<p><div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-cmd" data-lang="cmd">C:\<span style="color:#75715e">&gt;ping ping 192.168.1.10</span>
+
+192.168.1.10に ping を送信しています 32 バイトのデータ:
+192.168.1.10 からの応答: バイト数 =32 時間 =67ms TTL=63
+192.168.1.10 からの応答: バイト数 =32 時間 =66ms TTL=63
+192.168.1.10 からの応答: バイト数 =32 時間 =84ms TTL=63
+192.168.1.10 からの応答: バイト数 =32 時間 =73ms TTL=63
+
+192.168.1.10 の ping 統計:
+    パケット数: 送信 = 4、受信 = 4、損失 = 0 (0% の損失)、
+ラウンド トリップの概算時間 (ミリ秒):
+    最小 = 66ms、最大 = 84ms、平均 = 72ms
+
+C:\<span style="color:#75715e">&gt;</span></code></pre></div>
+はい、できたみたいです。暫定ではありますがやっとVPNを張ることができました。</p>
+<h2 id="5-まとめ">5. まとめ</h2>
+<p>自分は家にRaspbbery piを使った簡易NASがあるのでそこにアクセスできたらなと結構前から思っていたのですが構築に時間を用してしまいました。(;´д｀)トホホ(二ヵ月)。
+個人的にはいろんなことを再度吸収できたので良かったなと思ってますけどね。</p>
+<p>そうそう最近はAWSの勉強をしているのでラズパイとAWS使っていろいろ遊べたらいいなと考えております。
+面白そうなのあったら教えてください！</p>
+<p>かなり長文になってしまいましたが読んでくれた方、ありがとうございました。</p>
+<p>今後は軽めの記事を高頻度で書きたいと思ってますんでよろしくです～</p>
+<p>ではでは。。。</p>
+<h2 id="6-referenceacknowledgment">6. Reference＆Acknowledgment</h2>
+<p>特に以下のサイトに助けられました。皆様に感謝いたします。</p>
+<p><a href="https://blog.koh.dev/2020-01-01-vpn/#lan-%E5%86%85%E3%81%AE%E4%BB%96%E3%81%AE%E6%A9%9F%E5%99%A8%E3%81%AB%E3%82%82-vpn-%E3%81%94%E3%81%97%E3%81%AB%E6%8E%A5%E7%B6%9A%E3%81%A7%E3%81%8D%E3%82%8B%E3%82%88%E3%81%86%E3%81%AB%E3%81%99%E3%82%8B">WireGuardでVPNごしに自宅サーバ開発できる環境を作った</a></p>
+<p><a href="https://bike8615.blogspot.com/2019/04/vpn-wireguard_8.html">未来型 VPN : WireGuard を導入してみました</a></p>
+
+                    
+                <div id="disqus_thread"></div>
+<script type="application/javascript">
+    var disqus_config = function () {
+    
+    
+    
+    };
+    (function() {
+        if (["localhost", "127.0.0.1"].indexOf(window.location.hostname) != -1) {
+            document.getElementById('disqus_thread').innerHTML = 'Disqus comments not available by default when the website is previewed locally.';
+            return;
+        }
+        var d = document, s = d.createElement('script'); s.async = true;
+        s.src = '//' + "https-toshikunblog-net" + '.disqus.com/embed.js';
+        s.setAttribute('data-timestamp', +new Date());
+        (d.head || d.body).appendChild(s);
+    })();
+</script>
+<noscript>Please enable JavaScript to view the <a href="https://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+<a href="https://disqus.com" class="dsq-brlink">comments powered by <span class="logo-disqus">Disqus</span></a>
+            </div>
+        </div>
+    </div>
+    <div class="column is-3">
+        <div class="card">
+    <div class="card-content">
+        <h1 class="title is-5">Tags</h1>
+        <div class="tags">
+        
+            <span class="tag"><a href="https://toshikunblog.net/tags/bat">bat</a></span>
+        
+            <span class="tag"><a href="https://toshikunblog.net/tags/camera">camera</a></span>
+        
+            <span class="tag"><a href="https://toshikunblog.net/tags/disney">disney</a></span>
+        
+            <span class="tag"><a href="https://toshikunblog.net/tags/github">github</a></span>
+        
+            <span class="tag"><a href="https://toshikunblog.net/tags/hugo">hugo</a></span>
+        
+            <span class="tag"><a href="https://toshikunblog.net/tags/lightroom">lightroom</a></span>
+        
+            <span class="tag"><a href="https://toshikunblog.net/tags/linux">linux</a></span>
+        
+            <span class="tag"><a href="https://toshikunblog.net/tags/mvno">mvno</a></span>
+        
+            <span class="tag"><a href="https://toshikunblog.net/tags/python">python</a></span>
+        
+            <span class="tag"><a href="https://toshikunblog.net/tags/rakuten%E3%83%A2%E3%83%90%E3%82%A4%E3%83%AB">rakutenモバイル</a></span>
+        
+            <span class="tag"><a href="https://toshikunblog.net/tags/raspberrypi">raspberrypi</a></span>
+        
+            <span class="tag"><a href="https://toshikunblog.net/tags/uq%E3%83%A2%E3%83%90%E3%82%A4%E3%83%AB">uqモバイル</a></span>
+        
+            <span class="tag"><a href="https://toshikunblog.net/tags/vpn">vpn</a></span>
+        
+            <span class="tag"><a href="https://toshikunblog.net/tags/youtube">youtube</a></span>
+        
+            <span class="tag"><a href="https://toshikunblog.net/tags/%E3%82%AB%E3%83%A1%E3%83%A9%E5%82%99%E5%BF%98%E9%8C%B2">カメラ備忘録</a></span>
+        
+            <span class="tag"><a href="https://toshikunblog.net/tags/%E3%82%B9%E3%83%94%E3%83%BC%E3%83%89%E3%83%86%E3%82%B9%E3%83%88">スピードテスト</a></span>
+        
+            <span class="tag"><a href="https://toshikunblog.net/tags/%E3%83%87%E3%82%A3%E3%82%BA%E3%83%8B%E3%83%BC%E3%83%9B%E3%83%86%E3%83%AB">ディズニーホテル</a></span>
+        
+            <span class="tag"><a href="https://toshikunblog.net/tags/%E3%83%8D%E3%83%83%E3%83%88%E3%83%AF%E3%83%BC%E3%82%AF">ネットワーク</a></span>
+        
+            <span class="tag"><a href="https://toshikunblog.net/tags/%E3%83%96%E3%83%AD%E3%82%B0">ブログ</a></span>
+        
+            <span class="tag"><a href="https://toshikunblog.net/tags/%E6%8A%80%E8%A1%93%E3%83%8D%E3%82%BF">技術ネタ</a></span>
+        
+            <span class="tag"><a href="https://toshikunblog.net/tags/%E8%88%9E%E6%B5%9C%E6%97%A5%E8%A8%98">舞浜日記</a></span>
+        
+            <span class="tag"><a href="https://toshikunblog.net/tags/%E9%9B%91%E8%A8%98">雑記</a></span>
+        
+        </div>          
+    </div>
+</div><br>
+        <div class="card">
+    <div class="card-content">
+        <h1 class="title is-5">Recent posts</h1>
+        
+            <h1><a href="https://toshikunblog.net/post/20200907/">ホテルミラコスタ滞在記【2020/08】Part②</a></h1>
+            <time class="has-text-grey-light is-size-7">7 September 2020</time>
+        
+            <h1><a href="https://toshikunblog.net/post/20200905/">ホテルミラコスタ滞在記【2020/08】Part①</a></h1>
+            <time class="has-text-grey-light is-size-7">5 September 2020</time>
+        
+            <h1><a href="https://toshikunblog.net/post/20200728/">Pythonでsshをしてみる</a></h1>
+            <time class="has-text-grey-light is-size-7">28 July 2020</time>
+        
+            <h1><a href="https://toshikunblog.net/post/20200724/">hugoでよく使うお作法</a></h1>
+            <time class="has-text-grey-light is-size-7">24 July 2020</time>
+        
+            <h1><a href="https://toshikunblog.net/post/20200717/">ラズパイでVPN(WireGuard)を構築した</a></h1>
+            <time class="has-text-grey-light is-size-7">17 July 2020</time>
+        
+    </div>
+</div>
+    <br>
+                
+  
+
+
+
+<div class="card">
+    <div class="card-content">
+        <h1 class="title is-5">Related posts</h1>
+      
+      
+            <h1><a href="https://toshikunblog.net/post/20200728/">Pythonでsshをしてみる</a></h1>
+            <time class="has-text-grey-light is-size-7">28 July 2020</time>
+      
+            <h1><a href="https://toshikunblog.net/post/20200724/">hugoでよく使うお作法</a></h1>
+            <time class="has-text-grey-light is-size-7">24 July 2020</time>
+      
+    </div>
+</div>
+
+    
+<br>
+        <div class="card">
+    <div class="card-content">
+        <h1 class="title is-5">Archives</h1>
+        
+            <a href="https://toshikunblog.net/archives/2020/09">2020/09</a> (2)<br>
+        
+            <a href="https://toshikunblog.net/archives/2020/07">2020/07</a> (3)<br>
+        
+            <a href="https://toshikunblog.net/archives/2020/06">2020/06</a> (1)<br>
+        
+            <a href="https://toshikunblog.net/archives/2020/05">2020/05</a> (4)<br>
+        
+            <a href="https://toshikunblog.net/archives/2020/04">2020/04</a> (1)<br>
+        
+            <a href="https://toshikunblog.net/archives/2020/03">2020/03</a> (4)<br>
+        
+    </div>
+</div>
+
+    </div>
+</div>
+
+
+    </div>
+</div>
+
+<footer class="footer has-background-grey-darker has-text-white">
+    <div class="content has-text-centered">
+        <p>
+            <span class="icon is-large"><a href="https://twitter.com/toshikun_photo" class="mysocial" rel="me"><i class="fab fa-twitter fa-3x"></i></a></span>&nbsp;&nbsp;
+            <span class="icon is-large"><a href="https://www.youtube.com/channel/UChJwQKK0lApGygrgHDGAsfA?view_as=subscriber" class="mysocial" rel="me"><i class="fab fa-youtube fa-3x"></i></a></span>&nbsp;&nbsp;
+            <span class="icon is-large"><a href="https://www.instagram.com/toshikun_photo" class="mysocial" rel="me"><i class="fab fa-instagram fa-3x"></i></a></span>&nbsp;&nbsp;
+            <span class="icon is-large"><a href="https://github.com/toshikunphoto" class="mysocial" rel="me"><i class="fab fa-github fa-3x"></i></a></span>&nbsp;&nbsp;
+            <br><br>
+            Copyright &copy; Toshikun Dlife 2020 - Theme by <a href="https://jeffprod.com" class="mysocial">JeffProd.com</a>
+            <br>
+            <a class="mysocial" href="https://toshikunblog.net/page/contact">問い合わせ</a> - <a class="mysocial" href="https://toshikunblog.net/page/privacypolicy">プライバシーポリシー</a>
+        </p>
+    </div>
+</footer>
+<script defer src="https://use.fontawesome.com/releases/v5.1.0/js/all.js"></script>
+</body>
+</html>
