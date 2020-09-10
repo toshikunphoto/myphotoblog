@@ -22,8 +22,8 @@ disqusShortname = "https-toshikunblog-net"
         endLevel = 3
         ordered = true
 
-[markup.goldmark.renderer]
-  unsafe = true
+    [markup.goldmark.renderer]
+        unsafe = true
 
 pygmentsUseClasses = true
 pygmentsCodefences = true
