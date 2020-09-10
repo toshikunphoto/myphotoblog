@@ -1,4 +1,11 @@
 <link rel="stylesheet" href="/css/toc.css">
+<style>
+#TableOfContents ol {
+    margin-left: 2em;
+    margin-top: 0.2em;
+    margin-bottom: 0.5em;
+  }
+</style>
 {{- /* tocパラメータを確認 */ -}}
 {{- if (.Param "toc" | default true) -}}
     {{- /* ここはさっきと同じ */ -}}
