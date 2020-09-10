@@ -18,8 +18,7 @@ code {
  #TableOfContents > ul {
     font-size: smaller;
     border-radius: 0.5em;
-    border: solid 1px lightgray;
-    padding: 0.5em 1em;
+    margin:0;
     line-height: 2;
   }
   #TableOfContents > ul:before {
