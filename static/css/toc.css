@@ -1,24 +1,21 @@
-#TableOfContents > ul {
+#TableOfContents > ol {
   font-size: medium;
   border-radius: 0.5em;
   border: solid 1px lightgray;
   padding: 0.5em 1em;
   line-height: 2;
 }
-#TableOfContents ul, ol, li a {
-  padding-left:~;
-}
 #TableOfContents > ul:before {
   content: "目次";
   font-weight: bolder;
 }
-#TableOfContents ul {
+#TableOfContents ol {
   list-style-type: none;
 }
-#TableOfContents li {
+#TableOfContents ol {
   padding-top: 0;
 }
-#TableOfContents li > ul {
+#TableOfContents ol > ul {
   padding-left: 1em;
   width: 100%;
 }
