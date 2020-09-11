@@ -24,21 +24,27 @@
         {{- replace .Content $firstH $newH | safeHTML -}}
         {{- $toc := $newH -}}
         {{- $toc := replaceRE `<nav id="TableOfContents">\n<ul>\n<li>\n<ul>` `<nav id="TableOfContents"><ol>` $toc -}}
+        {{- $toc := replaceRE `</ul>\n</li>\n</ul>\n</nav>` `</ol>\n</nav>` $toc -}}
         {{- safeHTML $toc -}}
     {{- else -}}
         {{- /* そもそもヘッダーがない時は普通に出力 */ -}}
         {{- .Content -}}
     {{- end -}}
 {{- else -}}
-    {{- /* tocMove = falseの時 */ -}}
+    {{- /* ToC使わないとき */ -}}
     {{- .Content -}}
 {{- end -}}
 
+<!--
+<nav id="TableOfContents">\n<ul>\n<li>\n<ul>
+<nav id="TableOfContents"><ol>
+<nav id="TableOfContents">\n<ul>\n<li>\n<ul>\n<li>ff<ul>
+  -->
 
 <!--
 {{- $toc := .TableOfContents -}}
 {{- $toc := replaceRE `<nav id="TableOfContents">\n<ul>\n<li>\n<ul>` `<nav id="TableOfContents"><ul>` $toc -}}
-{{- $toc := replaceRE `</ul>\n</li>\n</ul>\n</nav>` `</ul>\n</nav>` $toc -}}
+{{- $toc := replaceRE `</ul>\n</li>\n</ul>\n</nav>` `</ol>\n</nav>` $toc -}}
 {{- safeHTML $toc -}}
 {{- .Content -}}
 -->
