@@ -16,32 +16,13 @@ disqusShortname = "https-toshikunblog-net"
     category = "categories"
     archive = "archives"
 
-[markup]
-  defaultMarkdownHandler = "goldmark"
-  [markup.goldmark]
-    [markup.goldmark.extensions]
-      definitionList = true
-      footnote = true
-      linkify = true
-      strikethrough = true
-      table = true
-      taskList = true
-      typographer = true
-    [markup.goldmark.parser]
-      attribute = true
-      autoHeadingID = true
-    [markup.goldmark.renderer]
-      hardWraps = true
-      unsafe = false
-      xHTML = false
-    [markup.goldmark.renderer]
-        unsafe = true
     [markup.tableOfContents]
-        startLevel = 2
         endLevel = 3
         ordered = true
+        startLevel = 2
 
-
+    [markup.goldmark.renderer]
+        unsafe = true
 
 pygmentsUseClasses = true
 pygmentsCodefences = true
