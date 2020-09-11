@@ -5,6 +5,6 @@
 -->
 
 {{- $toc := .TableOfContents -}}
-{{- $toc := replaceRE `<ol>\n<li>\n<ol>` `<ol>` $toc -}}
+{{- $toc := replaceRE `<ul>\n<li>\n<ul>` `<ol>` $toc -}}
 {{- safeHTML $toc -}}
 {{- .Content -}}
