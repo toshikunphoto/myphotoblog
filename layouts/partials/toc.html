@@ -2,9 +2,15 @@
 <!--
 {{ .TableOfContents }}
 {{- .Content -}}
--->
+
 
 {{- $toc := .TableOfContents -}}
 {{- $toc := replaceRE `<ul>\n<li>\n<ul>` `<ol>` $toc -}}
 {{- safeHTML $toc -}}
+{{- .Content -}}-->
+
+
+{{- $toc := .TableOfContents -}}
+{{- $toc := replaceRE `<nav id="TableOfContents">\n<ul>\n<li>\n<ul>` `<nav id="TableOfContents"><ul>` $toc -}}
+{{- $toc := replaceRE `</ul>\n</li>\n</ul>\n</nav>` `</ul>\n</nav>` $toc -}}
 {{- .Content -}}
