@@ -23,7 +23,7 @@
         {{- /* 古いヘッダーを新しいヘッダーに置換して出力 */ -}}
         {{- replace .Content $firstH $newH | safeHTML -}}
         {{- $toc := $newH -}}
-        {{- $toc := replaceRE `<nav id="TableOfContents">\n<ul>\n<li>\n<ul>` `<nav id="TableOfContents"><ul>` $toc -}}
+        {{- $toc := replaceRE `<nav id="TableOfContents">\n<ul>\n<li>\n<ul>` `<nav id="TableOfContents"><ol>` $toc -}}
         {{- safeHTML $toc -}}
     {{- else -}}
         {{- /* そもそもヘッダーがない時は普通に出力 */ -}}
@@ -31,7 +31,6 @@
     {{- end -}}
 {{- else -}}
     {{- /* tocMove = falseの時 */ -}}
-    {{- .TableOfContents -}}
     {{- .Content -}}
 {{- end -}}
 
