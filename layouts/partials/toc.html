@@ -11,7 +11,7 @@
 
 
 {{- /* tocパラメータを確認 */ -}}
-{{- if (.Param "toc" | default true) -}}
+{{- if (.Param "toc" ) -}}
     {{- /* 正規表現でh[2-6]を探す */ -}}
     {{- $header := (findRE "<h[2-6].*?>(?:.|\n)*?</h[2-6]>" .Content) -}}
     {{- /* 最初に出現するh[2-6]を取得 */ -}}
@@ -22,10 +22,9 @@
         {{- $newH := printf `%s%s` .TableOfContents $firstH -}}
         {{- /* 古いヘッダーを新しいヘッダーに置換して出力 */ -}}
         {{- replace .Content $firstH $newH | safeHTML -}}
-        {{- $toc := $newH -}}
-        {{- $toc := replaceRE `<nav id="TableOfContents">\n<ul>\n<li>\n<ul>` `<nav id="TableOfContents"><ol>` $toc -}}
-        {{- $toc := replaceRE `<ul>` `<ol>` $toc -}}
-        {{- safeHTML $toc -}}
+        <div class="item-content" itemprop="articleBody">
+          {{ .Content | replaceRE `<nav id="TableOfContents">\s*<ul>\s*<li>\s*<ul>` `<nav id="TableOfContents"><ul>` | replaceRE `</ul>\s*</li>\s*</ul>\s*</nav>` `</ul></nav>` | safeHTML }}
+          </div>{{ "<!--articleBody-end-->" | safeHTML }}
     {{- else -}}
         {{- /* そもそもヘッダーがない時は普通に出力 */ -}}
         {{- .Content -}}
