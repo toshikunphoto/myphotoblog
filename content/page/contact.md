@@ -1,6 +1,6 @@
 ---
 title: "お問い合わせ"
-archives: "2020/01"
+_build: { list: false }
 tags: []
 author: toshikun
 ---

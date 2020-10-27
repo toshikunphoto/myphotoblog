@@ -1,0 +1,8 @@
+<!--記事に関連するタグを表示させる-->
+{{ with .Params.tags }}
+<div>
+    {{ range . }}
+    <a class="tag is-info" href="/tags/{{lower . }}/">{{ . }}</a>
+  {{ end }}
+</div>
+{{ end }}

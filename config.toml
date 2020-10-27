@@ -1,36 +1,56 @@
 baseurl = "https://toshikunblog.net/"
 title = "Toshikun Dlife"
-author = "@Toshikun"
-copyright = "Copyright © 2020, @Toshikun"
-canonifyurls = true
-googleAnalytics = "UA-165344098-1"
-paginate = 4
-hasCJKLanguage = true
-summaryLength = 40
-theme = "hugo-blog-jeffprod"
-useFaviconGenerator = true
+theme = "hugo_theme_robust"
+googleAnalytics = "UA-165344098-1" # Optional
 disqusShortname = "https-toshikunblog-net"
+hasCJKLanguage = true
+copyright = "Copyright © 2020 Toshikun Dlife"
+languageCode = "ja-JP"
+
+
+[params]
+description = "舞浜とネットワークとITなLife"
+dateformat = "2006-01-02" # Optional
+#Fonts settings.
+googlefonts = "https://fonts.googleapis.com/css?family=Source+Code+Pro" # Optional, Include google fonts.
+fontfamily = "'YuGothic','Yu Gothic','Hiragino Kaku Gothic Pro',Meiryo,sans-serif;" # Optional, Override body font family.
+#logofontfamily = "Yu Gothic, M PLUS 1p" # Optional, Override logo font.
+
+#enableHighlight = false # highlight.js option
 
 [taxonomies]
-    tag = "tags"
-    category = "categories"
-    archive = "archives"
+tag = "tags"
+archives = "archives"
+
+
+[params.author]
+thumbnail = "img/images.jpg"
+name = "Toshikun"
+description = """
+<p>
+舞浜と家と職場を行き来する人間
+<br>
+ネットワークとか趣味のことを書き連ねるだけの場所
+<br>
+サイドFireを目指す雑魚ネットワークエンジニアです
+</p>
+私についてはこちらから --- <a href="/page/about/">About me</a>
+<br>
+お問い合わせ --- <a href="/page/contact/">Contact</a> 
+"""
+instagram = "https://www.instagram.com/toshikun_photo/"
+twitter = "https://twitter.com/toshikun_photo/"
+youtube = "https://www.youtube.com/channel/UChJwQKK0lApGygrgHDGAsfA/"
+github = "https://github.com/toshikunphoto/"
+
+[markup.goldmark.renderer]
+unsafe = true
 
 [markup]
     [markup.tableOfContents]
         ordered = false
         startLevel = 2
-        endLevel = 3
+        endLevel = 4
 
-
-    [markup.goldmark.renderer]
-        unsafe = true
-
-pygmentsUseClasses = true
-pygmentsCodefences = true
-
-  
-[params]
-  twitterID = "@toshikun_photo"
-  images = ["https://toshikunblog.net/img/images.jpg"]
-  title = "Toshikun Dlife"
+[outputs]
+page = [ "HTML", "AMP" ] # if you want AMP enable.

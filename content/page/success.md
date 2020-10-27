@@ -1,7 +1,6 @@
 ---
 title: "プライバシーポリシー"
-date: 2020-01-01T11:57:22+09:00
-archives: "2020/01"
+_build: { list: false }
 tags: []
 author: toshikun
 ---
