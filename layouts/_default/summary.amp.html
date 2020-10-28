@@ -28,9 +28,18 @@
     <link rel="stylesheet" href="/css/BeerSlider.css">
     <!-- beer-slider finish-->
     {{ partial "share.html" . }}
-    <!-- google adsense -->
-    <script data-ad-client="ca-pub-4385015283597896" async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
-    <!--google adsense-->
+<!-- google adsense -->
+<script async custom-element="amp-ad" src="https://cdn.ampproject.org/v0/amp-ad-0.1.js"></script>
+<!-- スクエア1 -->
+<amp-ad width="100vw" height="320"
+     type="adsense"
+     data-ad-client="ca-pub-4385015283597896"
+     data-ad-slot="5050074177"
+     data-auto-format="rspv"
+     data-full-width="">
+  <div overflow=""></div>
+</amp-ad>
+<!--google adsense-->
   </header>
   <div class="article-body">{{ .Content }}</div>
 
