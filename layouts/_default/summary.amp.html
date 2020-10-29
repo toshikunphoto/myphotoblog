@@ -3,6 +3,9 @@
   <div class="thumb thumb-{{ .File.UniqueID }}"></div>
 
   <header class="article-header">
+        <!-- beer-slider start -->
+        <link rel="stylesheet" href="/css/BeerSlider.css">
+        <!-- beer-slider finish-->
     <h1 class="title">{{ .Title }}</h1>
 
     <ul class="facts">
@@ -24,9 +27,6 @@
       <br>
       {{ partial "tag-in-page.html" . }}
     </ul>
-    <!-- beer-slider start -->
-    <link rel="stylesheet" href="/css/BeerSlider.css">
-    <!-- beer-slider finish-->
     {{ partial "share.html" . }}
 <!-- google adsense -->
 <script async custom-element="amp-ad" src="https://cdn.ampproject.org/v0/amp-ad-0.1.js"></script>
