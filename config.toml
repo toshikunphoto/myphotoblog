@@ -53,4 +53,4 @@ unsafe = true
         endLevel = 4
 
 [outputs]
-page = [ "HTML", "AMP" ] # if you want AMP enable.
+page = [ "HTML" ] # if you want AMP enable.
