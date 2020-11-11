@@ -49,8 +49,8 @@ unsafe = true
 [markup]
     [markup.tableOfContents]
         ordered = false
-        startLevel = 2
-        endLevel = 4
+        startLevel = 1
+        endLevel = 3
 
 [outputs]
 page = [ "HTML" ] # if you want AMP enable.
