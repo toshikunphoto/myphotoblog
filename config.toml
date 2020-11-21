@@ -18,6 +18,8 @@ fontfamily = "'YuGothic','Yu Gothic','Hiragino Kaku Gothic Pro',Meiryo,sans-seri
 
 #enableHighlight = false # highlight.js option
 
+
+
 [taxonomies]
 tag = "tags"
 archives = "archives"

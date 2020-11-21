@@ -1,0 +1,25 @@
+<!-- kattene large -->
+  {{- $mainURL := .Get "mainURL" -}}
+  {{- $mainIMG := .Get "mainIMG" -}}
+  {{- $title := .Get "title" -}}
+  {{- $description := .Get "description" -}}
+  {{- $AmaURL := .Get "AmaURL" -}}
+  {{- $RakuURL := .Get "RakuURL" -}}
+  {{- $YahURL := .Get "YahURL" -}}
+  <div class="kattene">
+    <div class="kattene__imgpart"><a target="_blank" rel="noopener" href="{{ $mainURL }}"><img src="{{ $mainIMG }}"></a></div>
+    <div class="kattene__infopart">
+      <div class="kattene__title"><a target="_blank" rel="noopener" href="{{ $mainURL }}">{{ $title }}</a></div>
+      <div class="kattene__description">{{ $description }}</div>
+      <div class="kattene__btns __five">
+        <div><a class="kattene__btn __orange" target="_blank" rel="noopener" href="{{ $AmaURL }}">Amazon</a></div>
+        <div><a class="kattene__btn __blue" target="_blank" rel="noopener" href="{{ $RakuURL }}">楽天</a></div>
+        <div><a class="kattene__btn __red" target="_blank" rel="noopener" href="{{ $YahURL }}">Yahooショッピング</a></div>
+        <!--<div><a class="kattene__btn __green" target="_blank" rel="noopener" href="【商品のURL】">楽天Kobo</a></div>-->
+        <!--<div><a class="kattene__btn __pink" target="_blank" rel="noopener" href="【商品のURL】">audiobook</a></div>-->
+      </div>
+    </div>
+</div>
+<!-- kattene large -->
+
+
