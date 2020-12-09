@@ -1,7 +1,10 @@
 
 body {
   color: #333;
-  font-family: ,"Hiragino Kaku Gothic ProN", "Hiragino Kaku Gothic Pro","メイリオ", Meiryo,'游ゴシック体', 'Yu Gothic', YuGothic, sans-serif;
+
+  /* 下記行目を更新⇒更新後はその下の行
+  /* font-family: "Hiragino Kaku Gothic ProN", "Hiragino Kaku Gothic Pro","メイリオ", Meiryo,'游ゴシック体', 'Yu Gothic', YuGothic, sans-serif;  */
+  font-family: "メイリオ", Meiryo,"Hiragino Kaku Gothic ProN", "Hiragino Kaku Gothic Pro",'游ゴシック体', 'Yu Gothic', YuGothic, sans-serif;
   font-weight: 500;
   font-feature-settings : "palt";
   font-size: 15px; /* iherit→17pxに変更 */
@@ -13,7 +16,7 @@ body {
 
 article.sn > .article-body p {
   margin: 1rem 0;
-  line-height: 1.0rem;/* 行間を1.5→1.0に変更 */
+  line-height: 1.5rem;/* 行間を1.0→1.5に変更 */
 }
 
 /* contact・privacypolicy */

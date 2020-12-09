@@ -27,6 +27,9 @@ thumbnail: "https:test"
 [実際の表記](リンク先)
 
 
+# ブログカード
+{{< blogcard title="ホテルミラコスタ滞在記【2020/08】Part①" posturl="https://toshikunblog.net/post/20200905/" description="先日、連れの誕生日ということもあって前から泊まりたかった、ホテルミラコスタに宿泊してきましたのでいろいろ紹介していきます。" >}}
+
 >引用文
 
 **強調**
