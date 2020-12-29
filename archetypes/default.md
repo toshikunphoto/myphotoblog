@@ -40,3 +40,6 @@ thumbnail: "https:test"
 #beerslider
 {{< beerslider id="target1" leftsrc="https://lh3.googleusercontent.com/RFnnHUTkpylVHPBiNwas_2WDWl9v7N8jDqeiVMjFk9zoRKGcbomebs7mR58nZgu3ZAVSveu0sH-RbVX19txh3TuLCv4wWp85eKzzWQsgv1k9eVTZQG7UCEigTWIaqEKcu1ZRtZozSQ=w800" rightsrc="https://lh3.googleusercontent.com/WS7hMZCDsdMM2r-eAuCfbwJ2K-ch8OVISG8p9AhsNbyYeu1rEqS6MfA8MlNdIP4bUSjFBcrYtvav6EvOGU6WAtq1ZfyZoLykb8LiNShljREniYcFp37a4o93KpM3mbwd2bXD2N7zlg=w800" >}}
 
+
+
+#table　
