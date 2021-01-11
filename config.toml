@@ -36,9 +36,13 @@ description = """
 <br>
 サイドFireを目指す雑魚ネットワークエンジニアです
 </p>
-私についてはこちらから --- <a href="/page/about/">About me</a>
+私についてはこちらから ---> <a href="/page/about/">About me</a>
 <br>
-お問い合わせ --- <a href="/page/contact/">Contact</a> 
+お問い合わせ ---> <a href="/page/contact/">Contact</a> 
+<br>
+---<br>
+<a href="https://blog.with2.net/link/?id=2057977&cid=2534"><img src="https://blog.with2.net/img/banner/c/banner_1/br_c_2534_1.gif" title="ディズニーリゾートランキング" width="110" height="31"></a>
+<br>
 """
 instagram = "https://www.instagram.com/toshikun_photo/"
 twitter = "https://twitter.com/toshikun_photo/"
