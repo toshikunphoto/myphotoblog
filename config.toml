@@ -61,3 +61,4 @@ unsafe = true
 
 [outputs]
 page = [ "HTML" ] # if you want AMP enable.
+
