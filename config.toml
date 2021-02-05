@@ -4,7 +4,6 @@ theme = "hugo_theme_robust"
 googleAnalytics = "UA-165344098-1" # Optional
 disqusShortname = "https-toshikunblog-net"
 hasCJKLanguage = true
-paginate = 4
 copyright = "Copyright © 2020 Toshikun Dlife"
 languageCode = "ja-JP"
 
