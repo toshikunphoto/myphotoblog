@@ -1,5 +1,5 @@
 ---
-title: "プライバシーポリシー"
+title: "success"
 _build: { list: false }
 tags: []
 author: toshikun
