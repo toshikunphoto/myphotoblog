@@ -1,7 +1,7 @@
 ---
 title: "{{ replace .Name "-" " " | title }}"
 date: {{ .Date }}
-archives: ["20xx/xx"]
+archives: ["20xx"]
 tags: ["tag1","tag2","tag3","tag4"]
 author: toshikun
 draft: true
