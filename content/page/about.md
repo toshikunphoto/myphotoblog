@@ -53,7 +53,7 @@ author: toshikun
 
 ・LPIC Level1
 
-・CCNA
+・CCNP Enterprize(改定後)
 
 ・AWS クラウドプラクティショナー(CLF-C01)
 
